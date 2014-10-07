@@ -14,19 +14,16 @@
 @implementation MSViewController
 {
     Sound *mySound; //音源クラスのインスタンス
-
+    AppDelegate *app; //変数管理
+    
+    //このクラスでしか使わない変数
     NSInteger gekkyu;
     NSInteger workTime;
     NSInteger weekHoliday;
-    
     //計算に使う変数
     NSInteger workDays;
     NSInteger totalWorkTime;
-    
-    //月額から計算した目標時給
-    NSInteger jikyuG;
 }
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,15 +38,16 @@
 {
     [super viewDidLoad];
     mySound = [[Sound alloc]init]; //音源のインスタンス初期化
-
-     //背景クリックでソフトウェアキーボードを消す
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeSoftKeyboard)];
-    [self.view addGestureRecognizer:gestureRecognizer];
+    app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
     
-    //それぞれの変数に0を代入。計算ボタンを押すと落ちてしまうため
+    //それぞれの変数に0を代入（計算ボタンを押すと落ちてしまうため）
     gekkyu = 0;
     workTime = 0;
     weekHoliday = 0;
+    
+    //背景クリックでソフトウェアキーボードを消す
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeSoftKeyboard)];
+    [self.view addGestureRecognizer:gestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,13 +78,15 @@
     //勤務日数に労働時間をかけて一ヶ月の労働時間を割り出す
     totalWorkTime = workDays*workTime;
     //月給を総労働時間で割って時給を算出する
-    jikyuG = gekkyu/totalWorkTime;
+    app.jikyu = gekkyu/totalWorkTime;
     //目標時給をラベルに表示する（jikyuLabel）
-    self.jikyuLabel.text = [NSString stringWithFormat:@"%ld",(long)jikyuG]; //???(long)がないと黄色エラーが出る???
+    NSNumber *num = [NSNumber numberWithFloat:app.jikyu]; //NSNumber型に変換
+    self.jikyuLabel.text = [NSString stringWithFormat:@"%@",num];
     
     
     [self closeSoftKeyboard];//ソフトウェアキーボードを閉じる
     [mySound soundCoin]; //コインの音
+    
 }
 
 //月給を入力した時の動作
@@ -110,17 +110,6 @@
 //ソフトウェアキーボードを消すためのメソッド
 - (void)closeSoftKeyboard {
     [self.view endEditing: YES];
-}
-
-//NPに変数を引き渡す
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    //Segueの特定
-    if ( [[segue identifier] isEqualToString:@"MStoNP"] ) {
-        NPViewController *npvctl = [segue destinationViewController];
-        //ここで遷移先ビューのクラスの変数vcntlに値を渡している
-        npvctl.jikyu = jikyuG;
-    }
 }
 
 - (IBAction)okBtn:(UIButton *)sender {

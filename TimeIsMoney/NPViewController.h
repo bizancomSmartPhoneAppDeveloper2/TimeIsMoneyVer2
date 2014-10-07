@@ -8,15 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Sound.h"
-
-//データを受け渡す先のクラスをインポートする
-#import "CDViewController.h"
-//#import "MSViewController.h" 上手くいかない
+#import "AppDelegate.h"
 
 @interface NPViewController : UIViewController
 
-//MSから受け渡される変数のプロパティ
-@property NSInteger jikyu;
+@property (weak, nonatomic) IBOutlet UITextField *prjhyouji;
 @property (weak, nonatomic) IBOutlet UITextField *jikyuhyouji;
+@property (weak, nonatomic) IBOutlet UITextField *housyuhyouji;
 
 @end

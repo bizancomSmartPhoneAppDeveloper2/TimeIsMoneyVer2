@@ -14,23 +14,34 @@
 @implementation NPViewController
 {
     Sound *mySound; //音源のインスタンス
-    
-    float housyu;
-    NSString *projectName;
+    AppDelegate *app; //変数管理
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     mySound = [[Sound alloc]init]; //音源のインスタンス初期化
+    app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
 
     //背景クリックでソフトウェアキーボードを消す
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeSoftKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
     
+    //もしprojectNameの中身が空でなければテキストフィールドにprojectNameの中身を表示 →　【？】「変数の中が空」は「0」でいいのか疑問【？】
+    if (app.projectName != nil) {
+        [self.prjhyouji setText: [NSString stringWithFormat:@"%@",app.projectName]];
+    }
+    
     //もしjikyuの中身が空でなければテキストフィールドにjikyuの中身を表示
-    if (_jikyu != 0) {
-        [self.jikyuhyouji setText: [NSString stringWithFormat:@"%ld",(long)_jikyu]];
+    if (app.jikyu != 0) {
+        NSNumber *num = [NSNumber numberWithFloat:app.jikyu]; //NSNumber型に変換
+        [self.jikyuhyouji setText: [NSString stringWithFormat:@"%@",num]];
+    }
+    
+    //もしhousyuの中身が空でなければテキストフィールドにhousyuの中身を表示
+    if (app.housyu != 0) {
+        NSNumber *num = [NSNumber numberWithFloat:app.housyu]; //NSNumber型に変換
+        [self.housyuhyouji setText: [NSString stringWithFormat:@"%@",num]];
     }
 }
 
@@ -42,43 +53,28 @@
 //プロジェクト名を入力した時の動作
 - (IBAction)pjNameLabel:(UITextField *)sender {
     NSString *text = sender.text;
-    projectName = text;
+    app.projectName = text;
 }
 
 //時給を入力した時の動作
 - (IBAction)jikyuLabel:(UITextField *)sender {
-//    月給から計算した時給をいれこみたいけど難しい。
+    //    月給から計算した時給をいれこみたいけど難しい。
     NSString *text = sender.text;
-    _jikyu = text.integerValue;
+    app.jikyu = text.integerValue;
 }
 
 //報酬額を入力した時の動作
 - (IBAction)housyuLabel:(UITextField *)sender {
     NSString *text = sender.text;
-    housyu = text.integerValue;
+    app.housyu = text.integerValue;
 }
-
-
-//必要な変数をCDに渡す
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    //Segueの特定
-    if ( [[segue identifier] isEqualToString:@"NPtoCD"] ) {
-        CDViewController *cdvc = [segue destinationViewController];
-        //ここで遷移先ビューのクラスの変数vcntlに値を渡している
-        cdvc.jikyu = _jikyu;
-        cdvc.housyu = housyu;
-        cdvc.projectName = projectName;
-    }
-}
-
 
 - (IBAction)gekkyuBtn:(UIButton *)sender {
     [mySound soundCoin];
 }
-
 - (IBAction)okBtn:(UIButton *)sender {
     [mySound soundCoin];
+    [app save]; //変数を保存
 }
 
 @end
