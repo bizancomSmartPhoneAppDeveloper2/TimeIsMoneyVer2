@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Sound.h"
+
 //データを受け渡す先のクラスをインポートする
 #import "CDViewController.h"
 //#import "MSViewController.h" 上手くいかない

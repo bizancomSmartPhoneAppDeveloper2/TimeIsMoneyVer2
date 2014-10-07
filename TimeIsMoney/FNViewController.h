@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Sound.h"
 
 @interface FNViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *pjNameLabel;

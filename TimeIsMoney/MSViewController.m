@@ -7,16 +7,14 @@
 //
 
 #import "MSViewController.h"
-//音源用のフレームワーク2つインポート
-#import <AVFoundation/AVFoundation.h>
-#import <AudioToolbox/AudioToolbox.h>
 
 @interface MSViewController ()
-//音源用のプロパティを宣言
-@property AVAudioPlayer *btnSound;
 @end
 
-@implementation MSViewController{
+@implementation MSViewController
+{
+    Sound *mySound; //音源クラスのインスタンス
+
     NSInteger gekkyu;
     NSInteger workTime;
     NSInteger weekHoliday;
@@ -42,6 +40,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    mySound = [[Sound alloc]init]; //音源のインスタンス初期化
+
      //背景クリックでソフトウェアキーボードを消す
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeSoftKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
@@ -86,11 +86,7 @@
     
     
     [self closeSoftKeyboard];//ソフトウェアキーボードを閉じる
-    //音源用の何か、ここでファイル名を変更
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"coin"ofType:@"mp3"];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    self.btnSound = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:NULL];
-    [self.btnSound play];//音がなるメソッド
+    [mySound soundCoin]; //コインの音
 }
 
 //月給を入力した時の動作
@@ -128,10 +124,7 @@
 }
 
 - (IBAction)okBtn:(UIButton *)sender {
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"coin"ofType:@"mp3"];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    self.btnSound = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:NULL];
-    [self.btnSound play];//音がなるメソッド
+    [mySound soundCoin]; //コインの音
 }
 
 @end

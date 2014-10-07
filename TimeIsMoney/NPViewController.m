@@ -7,17 +7,14 @@
 //
 
 #import "NPViewController.h"
-//音源用のフレームワーク2つインポート
-#import <AVFoundation/AVFoundation.h>
-#import <AudioToolbox/AudioToolbox.h>
 
 @interface NPViewController ()
-//音源用のプロパティを宣言
-@property AVAudioPlayer *btnSound;
 @end
 
 @implementation NPViewController
 {
+    Sound *mySound; //音源のインスタンス
+    
     float housyu;
     NSString *projectName;
 }
@@ -25,6 +22,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    mySound = [[Sound alloc]init]; //音源のインスタンス初期化
+
     //背景クリックでソフトウェアキーボードを消す
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeSoftKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
@@ -73,30 +72,13 @@
     }
 }
 
-////必要な変数をMSに渡す????わからん
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    //Segueの特定
-//    if ( [[segue identifier] isEqualToString:@"NPtoMS"] ) {
-//        MSViewController *msctrl = [segue destinationViewController];
-//        //ここで遷移先ビューのクラスの変数vcntlに値を渡している
-//        msctrl.projectName = projectName;
-//    }
-//}
 
 - (IBAction)gekkyuBtn:(UIButton *)sender {
-    //音がなる
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"coin"ofType:@"mp3"];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    self.btnSound = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:NULL];
-    [self.btnSound play];
+    [mySound soundCoin];
 }
+
 - (IBAction)okBtn:(UIButton *)sender {
-    //音がなる
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"coin"ofType:@"mp3"];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    self.btnSound = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:NULL];
-    [self.btnSound play];
+    [mySound soundCoin];
 }
 
 @end

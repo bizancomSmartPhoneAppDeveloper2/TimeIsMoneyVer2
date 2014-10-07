@@ -7,21 +7,20 @@
 //
 
 #import "ViewController.h"
-//音源用のフレームワーク2つインポート
-#import <AVFoundation/AVFoundation.h>
-#import <AudioToolbox/AudioToolbox.h>
 
 @interface ViewController ()
-//音源用のプロパティを宣言
-@property AVAudioPlayer *btnSound;
 @end
 
 @implementation ViewController
+{
+    Sound *mySound; //音源クラスのインスタンス
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    mySound = [[Sound alloc]init]; //音源クラスのインスタンス初期化
     }
 
 - (void)didReceiveMemoryWarning
@@ -31,11 +30,7 @@
 }
 
 - (IBAction)startBtn:(UIButton *)sender {
-    //音がなる
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"coin"ofType:@"mp3"];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    self.btnSound = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:NULL];
-   [self.btnSound play];
+    [mySound soundCoin]; //コインの音
 }
 
 @end

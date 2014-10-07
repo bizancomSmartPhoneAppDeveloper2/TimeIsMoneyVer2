@@ -7,19 +7,18 @@
 //
 
 #import "FNViewController.h"
-//音源用のフレームワーク2つインポート
-#import <AVFoundation/AVFoundation.h>
-#import <AudioToolbox/AudioToolbox.h>
 
 @interface FNViewController ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
-//音源用のプロパティを宣言
-@property AVAudioPlayer *btnSound;
+
 
 @end
 
 @implementation FNViewController
 {
+    Sound *mySound; //音源クラスのインスタンス
+
     //新しく追加する変数
     NSInteger resultTime;
     float resultCost;
@@ -40,6 +39,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    mySound = [[Sound alloc]init]; //音源クラスのインスタンス初期化
+
     //pjNameResultLabelにプロジェクト名を記入
     self.pjNameLabel.text = [NSString stringWithFormat:@"%@",_projectName];
     
@@ -102,10 +103,7 @@
 */
 
 - (IBAction)otuBtn:(UIButton *)sender {
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"coin"ofType:@"mp3"];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    self.btnSound = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:NULL];
-    [self.btnSound play];
+    [mySound soundCoin]; //コインの音
 }
 
 @end

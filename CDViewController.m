@@ -7,18 +7,17 @@
 //
 
 #import "CDViewController.h"
-//音源用のフレームワーク2つインポート
-#import <AVFoundation/AVFoundation.h>
-#import <AudioToolbox/AudioToolbox.h>
 
 @interface CDViewController ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
-//音源用のプロパティを宣言
-@property AVAudioPlayer *btnSound;
 
 @end
 
-@implementation CDViewController{
+@implementation CDViewController
+{
+    Sound *mySound; //音源クラスのインスタンス
+
     //タイマーで必要なインスタンスと変数
     NSTimer *myTimer;
     NSInteger hours;
@@ -47,6 +46,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    mySound = [[Sound alloc]init]; //音源クラスのインスタンス初期化
     //プロジェク名と状態をラベルに表示
     self.pjNameLabel.text = [NSString stringWithFormat:@"%@",_projectName];
     self.pjStatusLabel.text = [NSString stringWithFormat:@"目標終了時間まであと…"];
@@ -97,11 +97,7 @@
         [self countTimer];
         [self costTimer];
     }
-    //音を鳴らす
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"coin"ofType:@"mp3"];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    self.btnSound = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:NULL];
-    [self.btnSound play];
+    [mySound soundCoin]; //コインの音
 }
 
 //~~~~~~~~~~~~~~~~~~~~~ここからタイマーカウント~~~~~~~~~~~~~~~~~~~~~
@@ -140,11 +136,10 @@
         else if(hours == 0 && minutes == 0 && seconds ==0){
             isOver = YES;
             [self akajiCount];
+            
             //ついでにアラート音を鳴らす
-            NSString *path = [[NSBundle mainBundle]pathForResource:@"Time approach"ofType:@"mp3"];
-            NSURL *url = [NSURL fileURLWithPath:path];
-            self.btnSound = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:NULL];
-            [self.btnSound play];
+            [mySound soundAlert];  //アラート音
+            
             //ついでにボタンを変える
             [self.startStopButton setImage:[UIImage imageNamed:@"btnStartRed"] forState:UIControlStateNormal];
             [self.finishBtn setImage:[UIImage imageNamed:@"btnFinishRed"] forState:UIControlStateNormal];
@@ -226,9 +221,6 @@
 }
 
 - (IBAction)finishBtn:(UIButton *)sender {
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"register"ofType:@"mp3"];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    self.btnSound = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:NULL];
-    [self.btnSound play];
+    [mySound soundRegi]; //レジの音
 }
 @end
