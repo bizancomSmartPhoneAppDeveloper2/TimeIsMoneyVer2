@@ -8,11 +8,11 @@
 
 #import "MSViewController.h"
 
+
 @interface MSViewController ()
 @end
 
-@implementation MSViewController
-{
+@implementation MSViewController{
     Sound *mySound; //音源クラスのインスタンス
     AppDelegate *app; //変数管理
     
@@ -24,6 +24,7 @@
     NSInteger workDays;
     NSInteger totalWorkTime;
 }
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,7 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    mySound = [[Sound alloc]init]; //音源のインスタンス初期化
+    mySound = [[Sound alloc]init]; //音源クラスのインスタンス初期化
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
     
     //それぞれの変数に0を代入（計算ボタンを押すと落ちてしまうため）
@@ -55,16 +56,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 //計算するボタンをおした時の動作
 - (IBAction)keisanButton {

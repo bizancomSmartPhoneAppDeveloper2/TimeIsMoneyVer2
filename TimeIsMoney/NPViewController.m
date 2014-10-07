@@ -22,7 +22,7 @@
     [super viewDidLoad];
     mySound = [[Sound alloc]init]; //音源のインスタンス初期化
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
-
+    
     //背景クリックでソフトウェアキーボードを消す
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeSoftKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
@@ -43,6 +43,7 @@
         NSNumber *num = [NSNumber numberWithFloat:app.housyu]; //NSNumber型に変換
         [self.housyuhyouji setText: [NSString stringWithFormat:@"%@",num]];
     }
+    
 }
 
 //ソフトウェアキーボードを消すためのメソッド

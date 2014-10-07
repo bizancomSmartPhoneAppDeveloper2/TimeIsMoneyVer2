@@ -9,10 +9,7 @@
 #import "FNViewController.h"
 
 @interface FNViewController ()
-
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
-
-
 @end
 
 @implementation FNViewController

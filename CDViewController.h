@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Sound.h"
-
-//データを受け渡す先のクラスをインポートする
-#import "FNViewController.h"
-
+#import "Sound.h" //音源クラス
+#import "AppDelegate.h" //変数管理
 
 @interface CDViewController : UIViewController
 

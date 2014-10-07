@@ -12,4 +12,17 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property float jikyu;
+@property float housyu;
+@property NSString *projectName;
+
+@property NSInteger hours;
+@property NSInteger minutes;
+@property NSInteger seconds;
+@property BOOL isOver; //設定時間を過ぎたかどうかの判定、YESならマイナスカウントを始める
+@property float mokuhyouJikan;
+
+-(void)save; //変数の値を保存するためのメソッド
+
+//眠い
 @end

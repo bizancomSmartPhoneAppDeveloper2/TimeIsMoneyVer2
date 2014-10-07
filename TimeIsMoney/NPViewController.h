@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Sound.h"
-#import "AppDelegate.h"
+#import "Sound.h" //音源クラス
+#import "AppDelegate.h" //変数管理
 
 @interface NPViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *prjhyouji;
-@property (weak, nonatomic) IBOutlet UITextField *jikyuhyouji;
-@property (weak, nonatomic) IBOutlet UITextField *housyuhyouji;
 
+@property (weak, nonatomic) IBOutlet UITextField *jikyuhyouji;
+
+@property (weak, nonatomic) IBOutlet UITextField *housyuhyouji;
 @end

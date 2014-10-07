@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Sound.h"
-#import "AppDelegate.h"
+#import "Sound.h" //音源クラス
+#import "AppDelegate.h" //変数管理
 
 @interface MSViewController : UIViewController
-
 @property (weak, nonatomic) IBOutlet UILabel *jikyuLabel;
 
 @end
