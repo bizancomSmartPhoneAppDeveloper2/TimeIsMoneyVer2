@@ -37,44 +37,12 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tableView" destination="Xer-Pg-jkT" id="zQ1-Rf-nGk"/>
+                        <segue destination="p0p-wN-6Ax" kind="modal" identifier="topToCD" animates="NO" id="ZWQ-wJ-DPZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYU-jf-4jK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-439" y="97"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="ufC-wZ-h7g">
-            <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="vcback" translatesAutoresizingMaskIntoConstraints="NO" id="cDS-7X-5HC">
-                                <rect key="frame" x="-5" y="0.0" width="330" height="568"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAl-VK-Nc9">
-                                <rect key="frame" x="125" y="350" width="70" height="110"/>
-                                <state key="normal" backgroundImage="btnTop">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="startBtn:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZvT-5p-p3O"/>
-                                    <segue destination="VkJ-d8-TsN" kind="modal" id="arK-eE-qN0"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="104" y="182"/>
+            <point key="canvasLocation" x="-519" y="139"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="U7g-Rm-pHW">
@@ -290,7 +258,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ic6-Fn-hrv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="256" y="757"/>
+            <point key="canvasLocation" x="-337" y="823"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="QNX-iM-qcF">
@@ -335,7 +303,7 @@
                                 <connections>
                                     <action selector="otuBtn:" destination="zDi-Go-v1q" eventType="touchUpInside" id="T1i-aO-ioV"/>
                                     <action selector="startStopButton:" destination="p0p-wN-6Ax" eventType="touchUpInside" id="n6V-0J-pov"/>
-                                    <segue destination="vXZ-lx-hvc" kind="modal" id="XqI-5p-UhU"/>
+                                    <segue destination="RCf-QB-14b" kind="modal" id="F6e-6h-BOv"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -363,12 +331,10 @@
         <image name="btnOtsu" width="488" height="100"/>
         <image name="btnStart" width="488" height="100"/>
         <image name="btnStartRed" width="488" height="100"/>
-        <image name="btnTop" width="140" height="220"/>
         <image name="cdback01" width="640" height="1136"/>
         <image name="fnback01" width="640" height="1136"/>
         <image name="msback" width="640" height="1136"/>
         <image name="npback" width="640" height="1136"/>
-        <image name="vcback" width="640" height="1136"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -376,6 +342,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="arK-eE-qN0"/>
+        <segue reference="m8u-H1-RtZ"/>
+        <segue reference="F6e-6h-BOv"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,6 +7,8 @@
 //
 
 #import "topViewController.h"
+#import "CDViewController.h"
+
 
 @interface topViewController ()
 @end
@@ -19,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //NSUserdefaultの中身を全消去するメソッド
+//NSUserdefaultの中身を全消去するメソッド
 //        NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
 //        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
 
@@ -105,20 +107,34 @@
 
 //新規プロジェクト作成ボタン
 - (IBAction)btnNewPrj:(UIButton *)sender {
-    
-    
-    
-    
     //新規プロジェクト作成なので変数を初期化
     app.jikyu = 0;
     app.housyu = 0;
     app.projectName = nil;
-    
-//    //仮
-//    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSDictionary *dic = [defaults persistentDomainForName:appDomain];
-//    NSLog(@"defualts:%@", dic);
 }
 
+
+//セルが選択された時
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    if ( indexPath.section != 0) return;
+    NSInteger row = indexPath.row;
+    
+    NSString *str = [NSString stringWithFormat: @"プロジェクト_%03ld", row + 1];
+    NSDictionary *dic = [defaults dictionaryForKey:str];
+    
+    NSString *data = [dic objectForKey:@"プロジェクト名"];
+    app.projectName = data;
+
+    data = [dic objectForKey:@"時給"];
+    app.jikyu =[data integerValue];
+
+    data = [dic objectForKey:@"報酬"];
+    app.housyu = [data integerValue];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES]; // 選択状態の解除
+    [self performSegueWithIdentifier:@"topToCD" sender:self]; //opToCD Segueを実行
+}
 @end
