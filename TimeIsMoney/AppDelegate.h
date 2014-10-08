@@ -22,7 +22,4 @@
 @property BOOL isOver; //設定時間を過ぎたかどうかの判定、YESならマイナスカウントを始める
 @property float mokuhyouJikan;
 
--(void)save; //変数の値を保存するためのメソッド
-
-//眠い
 @end

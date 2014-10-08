@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F43D562419E455C000BF6718 /* topViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F43D562319E455C000BF6718 /* topViewController.m */; };
 		F46DA20F19CB403300AB1CEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DA20E19CB403300AB1CEC /* Foundation.framework */; };
 		F46DA21119CB403300AB1CEC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DA21019CB403300AB1CEC /* CoreGraphics.framework */; };
 		F46DA21319CB403300AB1CEC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DA21219CB403300AB1CEC /* UIKit.framework */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F43D562219E455C000BF6718 /* topViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = topViewController.h; sourceTree = "<group>"; };
+		F43D562319E455C000BF6718 /* topViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = topViewController.m; sourceTree = "<group>"; };
 		F46DA20B19CB403300AB1CEC /* TimeIsMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeIsMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46DA20E19CB403300AB1CEC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F46DA21019CB403300AB1CEC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -138,6 +141,8 @@
 				F4DBBB5219E4443A0064083C /* Sound.h */,
 				F4DBBB5319E4443A0064083C /* Sound.m */,
 				F46DA22019CB403300AB1CEC /* Main.storyboard */,
+				F43D562219E455C000BF6718 /* topViewController.h */,
+				F43D562319E455C000BF6718 /* topViewController.m */,
 				F46DA22319CB403400AB1CEC /* ViewController.h */,
 				F46DA22419CB403400AB1CEC /* ViewController.m */,
 				F46DA24319CB41AE00AB1CEC /* NPViewController.h */,
@@ -290,6 +295,7 @@
 				F46DA22519CB403400AB1CEC /* ViewController.m in Sources */,
 				F46DA24E19CB466800AB1CEC /* FNViewController.m in Sources */,
 				F4DBBB5419E4443A0064083C /* Sound.m in Sources */,
+				F43D562419E455C000BF6718 /* topViewController.m in Sources */,
 				F46DA21F19CB403300AB1CEC /* AppDelegate.m in Sources */,
 				F46DA24519CB41AE00AB1CEC /* NPViewController.m in Sources */,
 				F46DA21B19CB403300AB1CEC /* main.m in Sources */,

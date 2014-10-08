@@ -42,23 +42,4 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
--(void)save{
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    //時給を保存
-    NSNumber *num = [NSNumber numberWithFloat:self.jikyu];
-    [dic setValue: num  forKey: @"時給"];
-    
-    //報酬を保存
-    num = [NSNumber numberWithFloat:self.housyu];
-    [dic setValue: num  forKey: @"報酬"];
-    
-    //プロジェクト名を保存
-    [dic setObject: self.projectName  forKey: @"プロジェクト"];
-    
-    //配列を保存…変数でキーを変えたい
-    [defaults setObject:dic forKey:@"1"]; //ここの「1」を変数にしたい
-}
 @end

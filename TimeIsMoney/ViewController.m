@@ -21,6 +21,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     mySound = [[Sound alloc]init]; //音源クラスのインスタンス初期化
+    
+    //NSUserdefaultの中身を全消去するメソッド
+//    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+//    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
     }
 
 - (void)didReceiveMemoryWarning

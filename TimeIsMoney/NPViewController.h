@@ -13,8 +13,7 @@
 @interface NPViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *prjhyouji;
-
 @property (weak, nonatomic) IBOutlet UITextField *jikyuhyouji;
-
 @property (weak, nonatomic) IBOutlet UITextField *housyuhyouji;
+
 @end
