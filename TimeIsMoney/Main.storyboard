@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="i6S-Lg-GgH">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -137,7 +138,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tableView" destination="Xer-Pg-jkT" id="zQ1-Rf-nGk"/>
-                        <segue destination="p0p-wN-6Ax" kind="modal" identifier="topToCD" animates="NO" id="ZWQ-wJ-DPZ"/>
+                        <segue destination="p0p-wN-6Ax" kind="modal" identifier="topToCD" id="ZWQ-wJ-DPZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYU-jf-4jK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -227,6 +228,16 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cws-K6-1ed">
+                                <rect key="frame" x="40" y="28" width="30" height="30"/>
+                                <state key="normal" title="戻る">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backBtn:" destination="p0p-wN-6Ax" eventType="touchUpInside" id="aHH-Zg-Ubw"/>
+                                    <segue destination="i6S-Lg-GgH" kind="modal" id="ScF-ip-BHT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -237,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aMu-8H-Ag1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1360" y="-1726"/>
+            <point key="canvasLocation" x="-1421" y="-1705"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="XHo-ND-Inc">
@@ -380,6 +391,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="eCu-lz-0gi"/>
                     <connections>
                         <outlet property="TimeCostLabel" destination="qRO-9U-l88" id="k37-wW-3wd"/>
                         <outlet property="backImage" destination="JBK-Hk-G7L" id="phB-nL-dCV"/>
@@ -475,6 +487,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="qHs-Ew-fdM"/>
-        <segue reference="jwa-Fc-Loz"/>
+        <segue reference="ScF-ip-BHT"/>
     </inferredMetricsTieBreakers>
 </document>

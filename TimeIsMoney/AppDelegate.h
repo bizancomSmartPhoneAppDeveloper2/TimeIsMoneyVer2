@@ -32,11 +32,6 @@
 
 
 //個別プロジェクトの中身の変数
-@property NSInteger hours;
-@property NSInteger minutes;
-@property NSInteger seconds;
-@property BOOL isOver; //設定時間を過ぎたかどうかの判定、YESならマイナスカウントを始める
-@property float mokuhyouJikan;
 
 -(void)sinkouSet;
 

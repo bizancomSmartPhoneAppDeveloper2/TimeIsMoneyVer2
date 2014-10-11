@@ -17,10 +17,13 @@
     Sound *mySound; //音源クラスのインスタンス
     AppDelegate *app; //変数管理
     
-    //新しく追加する変数
-    NSInteger resultTime;
-    float resultCost;
+//このクラスでしか使われない変数
     NSInteger resultJikyu;
+    NSInteger hours;
+    NSInteger minutes;
+    NSInteger seconds;
+    NSInteger cost;
+    float ichienByousu;
 }
 
 
@@ -39,50 +42,40 @@
     mySound = [[Sound alloc]init]; //音源クラスのインスタンス初期化
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
     
-    // Do any additional setup after loading the view.
     //pjNameResultLabelにプロジェクト名を記入
     self.pjNameLabel.text = [NSString stringWithFormat:@"%@",app.projectName];
     
-    //resultTimeLabelにプロジェクト終了までにかかった時間の合計を記入
-    NSInteger num = app.mokuhyouJikan; //目標時間から小数点を切り捨てるためにint型の変数に代入
-    if (app.isOver) {
-        //マイナス収支だった場合のかかった分数の計算
-        resultTime = (app.hours*60)+app.minutes+num;
-        app.hours=resultTime/60;
-        app.minutes=resultTime%60;
-    }else{
-        //プラス収支だった場合のかかった分数の計算
-        if (app.seconds == 0) {
-            resultTime = num-((app.hours*60)+app.minutes);
-            app.hours=resultTime/60;
-            app.minutes=resultTime%60;
-        }else{
-            resultTime = num-((app.hours*60)+app.minutes)-1;
-            app.hours=resultTime/60;
-            app.minutes=resultTime%60;
-            app.seconds=60-app.seconds;
-        }
-    }
-    self.resultTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",app.hours,app.minutes,app.seconds];
+    //目標時給と報酬から目標時間を割り出す
+    float flt = app.housyu/app.jikyu*60*60;
+    NSInteger num = flt; //目標時間から小数点を切り捨てるためにint型の変数に代入
     
+    //経過時間と目標時間を比較し、目標時間を過ぎていた場合背景を赤くする
+    if (app.prjTime > num) {
+        self.backImage.image = [UIImage imageNamed:@"fnback02"]; //背景画像を変更する
+        [self.otuBtn setImage:[UIImage imageNamed:@"btnOtsuRed"] forState:UIControlStateNormal];//ボタンも変更する
+    }
+    
+    //resultTimeLabelにプロジェクト終了までにかかった時間の合計を記入
+    hours = app.prjTime/3600;
+    minutes = (app.prjTime%3600)/60;
+    seconds = (app.prjTime%3600)%60;
+    self.resultTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",hours,minutes,seconds];
+
+
     //resultCostLabelに報酬額から総コストを引いた金額を記入
-    resultCost = (app.hours*app.jikyu)+((app.minutes*app.jikyu)/60)+((app.seconds*app.jikyu)/3600);
-    resultCost = app.housyu - resultCost;
-    self.resultCostLabel.text = [NSString stringWithFormat:@"%ld",(long)resultCost];
+    ichienByousu = 3600/app.jikyu;//時給から１円あたりの秒数を計算
+    flt = app.prjTime/ichienByousu;
+    cost = flt;
+    cost = app.housyu - cost;
+    self.resultCostLabel.text = [NSString stringWithFormat:@"%ld",cost];
     
     //resultJikyuLabelに報酬額をかかった時間で割った「時給」を記入
-    resultJikyu = (app.housyu/((app.hours*3600)+(app.minutes*60)+app.seconds))*3600;
+    resultJikyu = (app.housyu/app.prjTime)*3600;
     if (app.housyu < resultJikyu) {
         NSNumber *num = [NSNumber numberWithFloat:app.housyu]; //float型を編集
         self.resultJikyuLabel.text = [NSString stringWithFormat:@"%@",num];
     }else{
-        self.resultJikyuLabel.text = [NSString stringWithFormat:@"%ld",(long)resultJikyu];
-    }
-    
-    //時間過ぎていた場合背景を赤くする
-    if (app.isOver) {
-        self.backImage.image = [UIImage imageNamed:@"fnback02"]; //背景画像を変更する
-        [self.otuBtn setImage:[UIImage imageNamed:@"btnOtsuRed"] forState:UIControlStateNormal];//ボタンも変更する
+        self.resultJikyuLabel.text = [NSString stringWithFormat:@"%ld",resultJikyu];
     }
 }
 

@@ -114,8 +114,8 @@
     if(app.projectName == nil){
         
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"エラー"
-                              message:@"\nプロジェクト名を登録してください。"
+                              initWithTitle:@"登録できません"
+                              message:@"\nプロジェクト名を入力してください。"
                               delegate:self
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
@@ -124,7 +124,7 @@
     //同じプロジェクト名があった場合警告が出る
     }else if (flg == YES) {
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"エラー"
+                              initWithTitle:@"登録できません"
                               message:@"\n同じ名前のプロジェクトが存在します。\nプロジェクト名を変更してください。"
                               delegate:self
                               cancelButtonTitle:@"OK"
@@ -134,8 +134,8 @@
     //報酬未記入の場合警告が出る
     }else if(app.housyu == 0){
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"エラー"
-                              message:@"\n報酬額を登録してください。"
+                              initWithTitle:@"登録できません"
+                              message:@"\n報酬額を入力してください。"
                               delegate:self
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];

@@ -20,6 +20,10 @@
     NSTimer *costTimer; //コスト表示用のタイマー
     
     //このクラスでしか使われない変数
+    NSInteger hours;
+    NSInteger minutes;
+    NSInteger seconds;
+    BOOL isOver; //設定時間を過ぎたかどうかの判定、YESならマイナスカウントを始める
     NSInteger cost;
     float ichienByousu;
 }
@@ -33,23 +37,45 @@
     //プロジェク名をラベルに表示
     self.pjNameLabel.text = [NSString stringWithFormat:@"%@",app.projectName];
     
-    //目標時給と報酬から目標時間を割り出す
-    app.mokuhyouJikan = app.housyu/app.jikyu*60;
-    NSInteger num = app.mokuhyouJikan; //目標時間から小数点を切り捨てるためにint型の変数に代入
+//    //目標時給と報酬から目標時間を割り出す
+//    app.mokuhyouJikan = app.housyu/app.jikyu*60;
+//    NSInteger num = app.mokuhyouJikan; //目標時間から小数点を切り捨てるためにint型の変数に代入
     
-    //時、分、秒に数字を代入。ラベルにそれを表示
-    app.hours = num/60;
-    app.minutes = num%60;
-    app.seconds = 0;
-    [self writePjTimeLabel];
+    //目標時給と報酬から目標時間を割り出す
+    float flt = app.housyu/app.jikyu*60*60;
+    NSInteger num = flt; //目標時間から小数点を切り捨てるためにint型の変数に代入
+    
+    //目標時間から経過時間を引いて残り時間を割り出す
+    num = num - app.prjTime;
+    
+    if (num >= 0) {
+        //もし残り時間が0以上の場合、時、分、秒に数字を代入。ラベルにそれを表示
+        hours = num/3600;
+        minutes = (num%3600)/60;
+        seconds = (num%3600)%60;
+        [self writePjTimeLabel];
+    }else{
+        //isOverをYESにして、時、分、秒に数字を代入。ラベルにそれを表示
+        isOver = YES;
+        num = -1*num;
+        hours = num/3600;
+        minutes = (num%3600)/60;
+        seconds = (num%3600)%60;
+        [self writePjTimeLabel];
+        self.backImage.image = [UIImage imageNamed:@"cdback02"]; //背景画像を変更する。ボタンも変更。
+        [self.startStopButton setImage:[UIImage imageNamed:@"btnStartRed"] forState:UIControlStateNormal];
+        [self.finishBtn setImage:[UIImage imageNamed:@"btnFinishRed"] forState:UIControlStateNormal];
+    }
+    
     
     //時給から１円あたりの秒数を計算
     ichienByousu = 3600/app.jikyu;
     //    NSLog(@"１円稼ぐのにかかる秒数は%f秒",ichienByousu);
     
-    //時間コストを0として表示
-    cost = 0;
-    self.TimeCostLabel.text = [NSString stringWithFormat:@"%ld",(long)cost]; ///???(long)???
+    //時間コストの初期値を表示
+    flt = app.prjTime/ichienByousu;
+    cost = flt;
+    self.TimeCostLabel.text = [NSString stringWithFormat:@"%ld",cost];
     
     //経過時間が0の場合終了ボタンを隠す
     if (app.prjTime == 0) {
@@ -70,30 +96,28 @@
 
 //タイマーで呼ばれるcountDownメソッド
 -(void)countDown{
-    [self kakunin];//確認用
     app.prjTime++; //経過時間を足していく
-
     //まだ00:00:00になってなかったら…
-    if (!app.isOver) {
-        if(app.seconds>0){
-            app.seconds--;
-            self.pjTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",app.hours,app.minutes,app.seconds];
-        }else if(app.minutes != 0 && app.seconds == 0){
+    if (!isOver) {
+        if(seconds>0){
+            seconds--;
+            self.pjTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",hours,minutes,seconds];
+        }else if(minutes != 0 && seconds == 0){
             //分が0ではない状態で秒が0になったら、分から1引いて秒を59にする（0秒と60秒は同じなので59秒からカウントダウン）
-            app.minutes--;
-            app.seconds=59;
+            minutes--;
+            seconds=59;
             [self writePjTimeLabel];
         }
         //分と秒が0だが、時が0ではない場合、時から1引いて分と秒を59にする。
-        else if(app.hours != 0 && app.minutes == 0 && app.seconds == 0){
-            app.hours--;
-            app.minutes = 59;
-            app.seconds = 59;
+        else if(hours != 0 && minutes == 0 && seconds == 0){
+            hours--;
+            minutes = 59;
+            seconds = 59;
             [self writePjTimeLabel];
         }
         //時、分、秒すべて0になったらisOverをYESにする
-        else if(app.hours == 0 && app.minutes == 0 && app.seconds == 0){
-            app.isOver = YES;
+        else if(hours == 0 && minutes == 0 && seconds == 0){
+            isOver = YES;
             [self akajiCount];
             //ついでにアラート音を鳴らす
             [mySound soundAlert];  //アラート音
@@ -110,7 +134,7 @@
 
 //countDownメソッドで使うprojectTimeLabelに残り時間を表示するためのメソッド
 -(void)writePjTimeLabel{
-    self.pjTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",app.hours,app.minutes,app.seconds];
+    self.pjTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",hours,minutes,seconds];
 }
 
 //赤字に陥った後のカウントアップメソッド
@@ -121,21 +145,21 @@
     self.backImage.image = [UIImage imageNamed:@"cdback02"]; //背景画像を変更する
     //カウントアップをしていくメソッド
     //分と秒が59だったら時に1を足して分と秒を0に戻す.
-    if (app.minutes == 59 && app.seconds == 59) {
-        app.hours++;
-        app.minutes = 0;
-        app.seconds =0;
+    if (minutes == 59 && seconds == 59) {
+        hours++;
+        minutes = 0;
+        seconds =0;
         [self writePjTimeLabel];
         app.prjTime++; //経過時間を足していく
         //秒が59だったら分に1を足して秒を0に戻す.
-    }else if (app.seconds == 59) {
-        app.minutes++;
-        app.seconds = 0;
+    }else if (seconds == 59) {
+        minutes++;
+        seconds = 0;
         [self writePjTimeLabel];
-        app.seconds++;
+        seconds++;
         //秒に1ずつ足していく
     }else{
-        app.seconds++;
+        seconds++;
         [self writePjTimeLabel];
     }
 }
@@ -155,7 +179,7 @@
 //コストラベルの更新をするメソッド
 -(void)witeCostLabel{
     cost++;
-    self.TimeCostLabel.text = [NSString stringWithFormat:@"%ld",(long)cost];
+    self.TimeCostLabel.text = [NSString stringWithFormat:@"%ld",cost];
 }
 //~~~~~~~~~~~~~~~~~~~~~コストカウントここまで~~~~~~~~~~~~~~~~~~~~~
 
@@ -169,19 +193,12 @@
 }
 
 
-
-//動作確認のためのメソッド
--(void)kakunin{
-    NSLog(@"%ld",app.prjTime);
-}
-
 - (IBAction)backBtn:(UIButton *)sender {
     //myTimerが動いている場合止める
     if ([myTimer isValid]) {
         [myTimer invalidate];
         [costTimer invalidate];
     }
-    
     [self saveTime]; //経過時間を保存
 }
 
@@ -193,12 +210,10 @@
         [costTimer invalidate];
         self.finishBtn.hidden = NO;
     }else{
-        //myTimerが動いてない場合動かす（timerメソッド）。終了ボタン隠す
+        //myTimerが動いてない場合動かす（timerメソッド）。
         [self countTimer];
         [self costTimer];
-        self.finishBtn.hidden = YES;
     }
-
     [self saveTime]; //経過時間を保存
     [mySound soundCoin]; //コインの音
 }

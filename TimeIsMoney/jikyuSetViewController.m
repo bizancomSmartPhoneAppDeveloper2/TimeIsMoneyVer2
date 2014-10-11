@@ -8,6 +8,7 @@
 
 #import "jikyuSetViewController.h"
 #import "AppDelegate.h"
+#import "Sound.h"
 
 @interface jikyuSetViewController ()
 
@@ -15,12 +16,14 @@
 
 @implementation jikyuSetViewController
 {
+    Sound *mySound; //音源のインスタンス
     AppDelegate *app; //変数管理
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    mySound = [[Sound alloc]init]; //音源のインスタンス初期化
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
     
     //時給を変数に入れる
@@ -47,7 +50,7 @@
     [self.view endEditing: YES];
 }
 
-//時給を入力した時の動作
+//時給を入力した時の動作 入力がすぐに反映されるのはなおした方がいいかも
 - (IBAction)jikyuLabel:(UITextField *)sender {
     NSString *text = sender.text;
     app.jikyu = text.integerValue;
