@@ -1,11 +1,102 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="RCf-QB-14b">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="i6S-Lg-GgH">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--Top View Controller-->
+        <!--終了-->
+        <scene sceneID="W60-AS-nPg">
+            <objects>
+                <viewController id="uN9-r8-35F" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xjv-nC-QAX"/>
+                        <viewControllerLayoutGuide type="bottom" id="oqY-mG-mvB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nqc-Ty-dsK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="終了" id="xbc-LI-BFN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n1d-a1-39l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-978" y="-229"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="oov-j7-Cdb">
+            <objects>
+                <tabBarController id="i6S-Lg-GgH" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="ww4-kW-5k9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="RCf-QB-14b" kind="relationship" relationship="viewControllers" id="72u-gN-wDh"/>
+                        <segue destination="uN9-r8-35F" kind="relationship" relationship="viewControllers" id="Hkn-H0-OGv"/>
+                        <segue destination="VkJ-d8-TsN" kind="relationship" relationship="viewControllers" id="U1Z-d5-itx"/>
+                        <segue destination="rEz-bG-NSN" kind="relationship" relationship="viewControllers" id="qHs-Ew-fdM"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mFA-Fh-LJB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1787" y="-942"/>
+        </scene>
+        <!--時給登録-->
+        <scene sceneID="GMv-cA-HLa">
+            <objects>
+                <viewController id="rEz-bG-NSN" customClass="jikyuSetViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FBE-2o-iJ7"/>
+                        <viewControllerLayoutGuide type="bottom" id="0ul-bZ-2gh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PAS-hy-gmt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q6z-Ta-npp">
+                                <rect key="frame" x="38" y="125" width="114" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="jikyuLabel:" destination="VkJ-d8-TsN" eventType="editingDidEnd" id="XhR-z8-ikU"/>
+                                    <action selector="jikyuLabel:" destination="rEz-bG-NSN" eventType="editingDidEnd" id="eFw-bS-joK"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96L-cV-los">
+                                <rect key="frame" x="193" y="105" width="89" height="50"/>
+                                <state key="normal" backgroundImage="btnJikyu">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="gekkyuBtn:" destination="VkJ-d8-TsN" eventType="touchUpInside" id="cwG-Yx-W5e"/>
+                                    <segue destination="2bd-SU-J0E" kind="modal" id="kax-kJ-Off"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KC4-q9-48d">
+                                <rect key="frame" x="38" y="448" width="244" height="50"/>
+                                <state key="normal" backgroundImage="btnOk">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="okBtn:" destination="VkJ-d8-TsN" eventType="touchUpInside" id="lHO-6V-KfD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="時給登録" id="L7Q-Cb-Ej9"/>
+                    <connections>
+                        <outlet property="jikyuhyouji" destination="q6z-Ta-npp" id="dGr-lT-mu5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="00t-gY-fI1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1697" y="-127"/>
+        </scene>
+        <!--進行中-->
         <scene sceneID="bj0-Mm-mHn">
             <objects>
                 <viewController id="RCf-QB-14b" customClass="topViewController" sceneMemberID="viewController">
@@ -18,22 +109,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Xer-Pg-jkT">
-                                <rect key="frame" x="0.0" y="57" width="320" height="511"/>
+                                <rect key="frame" x="0.0" y="67" width="320" height="452"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Pl-Ht-FyT">
-                                <rect key="frame" x="145" y="22" width="30" height="30"/>
-                                <state key="normal" title="新規">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ct9-JU-NlR">
+                                <rect key="frame" x="145" y="28" width="30" height="30"/>
+                                <state key="normal" title="更新">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnNewPrj:" destination="RCf-QB-14b" eventType="touchUpInside" id="oHG-wX-YrI"/>
-                                    <segue destination="VkJ-d8-TsN" kind="modal" animates="NO" id="m8u-H1-RtZ"/>
+                                    <action selector="btnReload:" destination="RCf-QB-14b" eventType="touchUpInside" id="Ue3-5v-crP"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="進行中" id="lRe-2P-B1Q"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tableView" destination="Xer-Pg-jkT" id="zQ1-Rf-nGk"/>
@@ -42,9 +133,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYU-jf-4jK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-519" y="139"/>
+            <point key="canvasLocation" x="-1148" y="-924"/>
         </scene>
-        <!--View Controller-->
+        <!--新規-->
         <scene sceneID="U7g-Rm-pHW">
             <objects>
                 <viewController id="VkJ-d8-TsN" customClass="NPViewController" sceneMemberID="viewController">
@@ -56,65 +147,85 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="npback" translatesAutoresizingMaskIntoConstraints="NO" id="tZ3-8X-HTv">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOr-Yk-xtH">
-                                <rect key="frame" x="40" y="486" width="244" height="50"/>
+                                <rect key="frame" x="40" y="450" width="244" height="50"/>
                                 <state key="normal" backgroundImage="btnOk">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="okBtn:" destination="VkJ-d8-TsN" eventType="touchUpInside" id="YZk-Dh-hqg"/>
-                                    <segue destination="RCf-QB-14b" kind="modal" animates="NO" id="UfG-g9-G5R"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JQZ-FE-jFD">
-                                <rect key="frame" x="40" y="169" width="240" height="30"/>
+                                <rect key="frame" x="40" y="118" width="240" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
                                 <connections>
                                     <action selector="pjNameLabel:" destination="VkJ-d8-TsN" eventType="editingChanged" id="dB0-Av-Qyx"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zq6-zs-IYV">
-                                <rect key="frame" x="40" y="240" width="114" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zq6-zs-IYV">
+                                <rect key="frame" x="40" y="195" width="240" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
                                 <connections>
-                                    <action selector="jikyuLabel:" destination="VkJ-d8-TsN" eventType="editingDidEnd" id="hZx-3y-Rka"/>
+                                    <action selector="clientLabel:" destination="VkJ-d8-TsN" eventType="editingChanged" id="dME-wi-Qah"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s9m-4q-lEb">
-                                <rect key="frame" x="40" y="310" width="218" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s9m-4q-lEb">
+                                <rect key="frame" x="40" y="285" width="240" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
+                                <connections>
+                                    <action selector="genreLabel:" destination="VkJ-d8-TsN" eventType="editingChanged" id="Adh-cc-tDN"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="プロジェクト名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpk-D2-mzR">
+                                <rect key="frame" x="40" y="83" width="119" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="クライアント名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9P-JK-LRp">
+                                <rect key="frame" x="40" y="166" width="119" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ジャンル" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPB-W0-Klm">
+                                <rect key="frame" x="40" y="256" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HiT-SQ-QZ2">
+                                <rect key="frame" x="40" y="361" width="215" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                 <connections>
-                                    <action selector="housyuLabel:" destination="VkJ-d8-TsN" eventType="editingChanged" id="1dy-2c-Fhk"/>
+                                    <action selector="housyuLabel:" destination="VkJ-d8-TsN" eventType="editingChanged" id="DR7-mT-3VY"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ucb-kx-gZ6">
-                                <rect key="frame" x="191" y="220" width="89" height="50"/>
-                                <state key="normal" backgroundImage="btnJikyu">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="gekkyuBtn:" destination="VkJ-d8-TsN" eventType="touchUpInside" id="Xd7-EZ-NVN"/>
-                                    <segue destination="2bd-SU-J0E" kind="modal" id="YQy-oc-fET"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="報酬額" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSS-jI-EE6">
+                                <rect key="frame" x="40" y="335" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="円" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dW8-wI-rFV">
+                                <rect key="frame" x="263" y="370" width="17" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="housyuhyouji" destination="s9m-4q-lEb" id="rcT-lH-BMU"/>
-                        <outlet property="jikyuhyouji" destination="zq6-zs-IYV" id="KKl-IF-tX2"/>
-                        <outlet property="prjhyouji" destination="JQZ-FE-jFD" id="sgN-Nq-Gvl"/>
-                    </connections>
+                    <tabBarItem key="tabBarItem" title="新規" id="Hzf-Xc-3IJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aMu-8H-Ag1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="744" y="20"/>
+            <point key="canvasLocation" x="-2095" y="-127"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="XHo-ND-Inc">
@@ -168,7 +279,7 @@
                                 </state>
                                 <connections>
                                     <action selector="okBtn:" destination="2bd-SU-J0E" eventType="touchUpInside" id="3dy-sY-A5k"/>
-                                    <segue destination="VkJ-d8-TsN" kind="modal" identifier="MStoNP" id="5gP-1b-trY"/>
+                                    <segue destination="rEz-bG-NSN" kind="modal" id="OHP-CE-63c"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49V-iM-UsD">
@@ -189,7 +300,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fxg-yI-UBz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1655" y="-201"/>
+            <point key="canvasLocation" x="-1521" y="845"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="GSx-Jg-rFE">
@@ -241,7 +352,7 @@
                                 </state>
                                 <connections>
                                     <action selector="finishBtn:" destination="p0p-wN-6Ax" eventType="touchUpInside" id="zdz-Sa-R1Y"/>
-                                    <segue destination="zDi-Go-v1q" kind="modal" identifier="CDtoFN" id="mbR-cK-CDc"/>
+                                    <segue destination="zDi-Go-v1q" kind="modal" id="kaG-kq-gIb"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -258,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ic6-Fn-hrv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-337" y="823"/>
+            <point key="canvasLocation" x="-759" y="-942"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="QNX-iM-qcF">
@@ -303,7 +414,7 @@
                                 <connections>
                                     <action selector="otuBtn:" destination="zDi-Go-v1q" eventType="touchUpInside" id="T1i-aO-ioV"/>
                                     <action selector="startStopButton:" destination="p0p-wN-6Ax" eventType="touchUpInside" id="n6V-0J-pov"/>
-                                    <segue destination="RCf-QB-14b" kind="modal" id="F6e-6h-BOv"/>
+                                    <segue destination="i6S-Lg-GgH" kind="modal" id="5Md-wl-6Uj"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -320,7 +431,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p6Q-vM-v8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="717" y="773"/>
+            <point key="canvasLocation" x="-357" y="-942"/>
         </scene>
     </scenes>
     <resources>
@@ -334,7 +445,6 @@
         <image name="cdback01" width="640" height="1136"/>
         <image name="fnback01" width="640" height="1136"/>
         <image name="msback" width="640" height="1136"/>
-        <image name="npback" width="640" height="1136"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -342,7 +452,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="m8u-H1-RtZ"/>
-        <segue reference="F6e-6h-BOv"/>
+        <segue reference="qHs-Ew-fdM"/>
     </inferredMetricsTieBreakers>
 </document>

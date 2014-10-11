@@ -32,7 +32,6 @@
     self.tableView.dataSource = self;
 
     [self prjArray]; //NSUserDefaultsからプロジェクトだけ取り出して配列に入れる
-
 }
 
 
@@ -85,12 +84,12 @@
 
 //NSUserDefaultsからプロジェクトだけ取り出して配列に入れる
 -(void)prjArray{
-    self.allProject = [[NSMutableArray alloc] init];// [NSMutableArray arrayWithObjects: nil];
+    self.allProject = [[NSMutableArray alloc] init];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    int cnt =  0;
+    int cnt = 0;
     NSNumber *num = [defaults objectForKey:@"プロジェクトカウント"];
-    if (num ) {
+    if (num) {
         cnt = num.intValue;
     }
     
@@ -103,15 +102,6 @@
         [self.allProject addObject:data] ;//] insertObject:data atIndex:i];//ここがおかしいと思われる
     }
  }
-
-
-//新規プロジェクト作成ボタン
-- (IBAction)btnNewPrj:(UIButton *)sender {
-    //新規プロジェクト作成なので変数を初期化
-    app.jikyu = 0;
-    app.housyu = 0;
-    app.projectName = nil;
-}
 
 
 //セルが選択された時
@@ -128,13 +118,14 @@
     NSString *data = [dic objectForKey:@"プロジェクト名"];
     app.projectName = data;
 
-    data = [dic objectForKey:@"時給"];
-    app.jikyu =[data integerValue];
-
     data = [dic objectForKey:@"報酬"];
     app.housyu = [data integerValue];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES]; // 選択状態の解除
     [self performSegueWithIdentifier:@"topToCD" sender:self]; //opToCD Segueを実行
+}
+
+- (IBAction)btnReload:(UIButton *)sender {
+    [self viewDidLoad];
 }
 @end

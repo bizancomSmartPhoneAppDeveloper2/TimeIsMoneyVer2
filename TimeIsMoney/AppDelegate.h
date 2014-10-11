@@ -12,10 +12,17 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+//共通の変数
 @property float jikyu;
-@property float housyu;
-@property NSString *projectName;
 
+//プロジェクト作成時の変数
+@property float housyu; //報酬
+@property NSString *projectName; //プロジェクト名
+@property NSString *genreName; //ジャンル名
+@property NSString *clientName; //クライアント名
+
+
+//個別プロジェクトの中身の変数
 @property NSInteger hours;
 @property NSInteger minutes;
 @property NSInteger seconds;
