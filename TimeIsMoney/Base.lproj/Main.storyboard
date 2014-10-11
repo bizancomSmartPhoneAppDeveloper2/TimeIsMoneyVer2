@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="i6S-Lg-GgH">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -36,7 +37,6 @@
                     <connections>
                         <segue destination="RCf-QB-14b" kind="relationship" relationship="viewControllers" id="72u-gN-wDh"/>
                         <segue destination="uN9-r8-35F" kind="relationship" relationship="viewControllers" id="Hkn-H0-OGv"/>
-                        <segue destination="VkJ-d8-TsN" kind="relationship" relationship="viewControllers" id="U1Z-d5-itx"/>
                         <segue destination="rEz-bG-NSN" kind="relationship" relationship="viewControllers" id="qHs-Ew-fdM"/>
                     </connections>
                 </tabBarController>
@@ -113,13 +113,19 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ct9-JU-NlR">
-                                <rect key="frame" x="145" y="28" width="30" height="30"/>
-                                <state key="normal" title="更新">
+                                <rect key="frame" x="274" y="28" width="30" height="30"/>
+                                <state key="normal" title="新規">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnReload:" destination="RCf-QB-14b" eventType="touchUpInside" id="Ue3-5v-crP"/>
+                                    <segue destination="VkJ-d8-TsN" kind="modal" id="s4d-YY-sET"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfE-qd-3E0">
+                                <rect key="frame" x="16" y="28" width="30" height="30"/>
+                                <state key="normal" title="編集">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -154,6 +160,7 @@
                                 </state>
                                 <connections>
                                     <action selector="okBtn:" destination="VkJ-d8-TsN" eventType="touchUpInside" id="YZk-Dh-hqg"/>
+                                    <segue destination="i6S-Lg-GgH" kind="modal" id="GmS-1v-jOQ"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JQZ-FE-jFD">
@@ -225,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aMu-8H-Ag1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2095" y="-127"/>
+            <point key="canvasLocation" x="-1148" y="-1630"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="XHo-ND-Inc">
@@ -452,6 +459,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="GmS-1v-jOQ"/>
         <segue reference="qHs-Ew-fdM"/>
     </inferredMetricsTieBreakers>
 </document>

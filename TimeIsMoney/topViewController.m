@@ -26,6 +26,7 @@
 //        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
 
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
+    [app jikyuset];
 
     // Do any additional setup after loading the view.
     self.tableView.delegate = self;
@@ -125,7 +126,13 @@
     [self performSegueWithIdentifier:@"topToCD" sender:self]; //opToCD Segueを実行
 }
 
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.tableView reloadData];
+    [super viewWillAppear:animated];
+}
+
 - (IBAction)btnReload:(UIButton *)sender {
-    [self viewDidLoad];
+    [self.tableView reloadData];
 }
 @end

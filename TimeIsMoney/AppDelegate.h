@@ -29,4 +29,6 @@
 @property BOOL isOver; //設定時間を過ぎたかどうかの判定、YESならマイナスカウントを始める
 @property float mokuhyouJikan;
 
+-(void)jikyuset;
+
 @end
