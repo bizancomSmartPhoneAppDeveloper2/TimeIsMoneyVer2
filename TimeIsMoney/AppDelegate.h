@@ -15,11 +15,20 @@
 //共通の変数
 @property float jikyu;
 
+//進行中プロジェクトを管理する配列
+@property NSMutableArray *nowProject;
+
 //プロジェクト作成時の変数
 @property float housyu; //報酬
 @property NSString *projectName; //プロジェクト名
 @property NSString *genreName; //ジャンル名
 @property NSString *clientName; //クライアント名
+
+//プロジェクトの経過時間を数える変数
+@property NSInteger prjTime;
+
+////プロジェクトの状態を判定する変数…新規=0、進行中=1、終了=2
+//@property NSInteger state;
 
 
 //個別プロジェクトの中身の変数
@@ -29,6 +38,6 @@
 @property BOOL isOver; //設定時間を過ぎたかどうかの判定、YESならマイナスカウントを始める
 @property float mokuhyouJikan;
 
--(void)jikyuset;
+-(void)sinkouSet;
 
 @end

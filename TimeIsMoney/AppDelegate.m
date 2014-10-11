@@ -37,6 +37,9 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    //userdefaulから時給を呼び出してjikyuに代入する
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.jikyu = [defaults floatForKey:@"時給"];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -45,9 +48,10 @@
 
 }
 
--(void)jikyuset{
-    //userdefaulから時給を呼び出してjikyuに代入する
+-(void)sinkouSet{
+    //userdefaulから進行中を呼び出してnowProjectに代入する
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    self.jikyu = [defaults floatForKey:@"時給"];
+    NSArray *array = [defaults arrayForKey:@"進行中"];
+    self.nowProject = [array mutableCopy];
 }
 @end

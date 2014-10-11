@@ -30,10 +30,8 @@
     mySound = [[Sound alloc]init]; //音源クラスのインスタンス初期化
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
     
-    // Do any additional setup after loading the view.
-    //プロジェク名と状態をラベルに表示
+    //プロジェク名をラベルに表示
     self.pjNameLabel.text = [NSString stringWithFormat:@"%@",app.projectName];
-    self.pjStatusLabel.text = [NSString stringWithFormat:@"目標終了時間まであと…"];
     
     //目標時給と報酬から目標時間を割り出す
     app.mokuhyouJikan = app.housyu/app.jikyu*60;
@@ -52,28 +50,18 @@
     //時間コストを0として表示
     cost = 0;
     self.TimeCostLabel.text = [NSString stringWithFormat:@"%ld",(long)cost]; ///???(long)???
-}
-
-//開始／停止ボタンをおした時の動作
-- (IBAction)startStopButton:(id)sender {
-    //myTimerが動いている場合止める
-    if ([myTimer isValid]) {
-        [myTimer invalidate];
-        [costTimer invalidate];
-    }else{
-        //myTimerが動いてない場合動かす（timerメソッド）
-        [self countTimer];
-        [self costTimer];
+    
+    //経過時間が0の場合終了ボタンを隠す
+    if (app.prjTime == 0) {
+        self.finishBtn.hidden = YES;
     }
-    [mySound soundCoin]; //コインの音
 }
 
 //~~~~~~~~~~~~~~~~~~~~~ここからタイマーカウント~~~~~~~~~~~~~~~~~~~~~
 //タイマーでcountDownメソッドを１秒ごとに繰り返し呼ぶ
 -(void)countTimer{
-    float num = 1;
     myTimer = [NSTimer
-               scheduledTimerWithTimeInterval:num
+               scheduledTimerWithTimeInterval:1
                target: self
                selector:@selector(countDown)
                userInfo:nil
@@ -82,6 +70,9 @@
 
 //タイマーで呼ばれるcountDownメソッド
 -(void)countDown{
+    [self kakunin];//確認用
+    app.prjTime++; //経過時間を足していく
+
     //まだ00:00:00になってなかったら…
     if (!app.isOver) {
         if(app.seconds>0){
@@ -135,6 +126,7 @@
         app.minutes = 0;
         app.seconds =0;
         [self writePjTimeLabel];
+        app.prjTime++; //経過時間を足していく
         //秒が59だったら分に1を足して秒を0に戻す.
     }else if (app.seconds == 59) {
         app.minutes++;
@@ -167,7 +159,53 @@
 }
 //~~~~~~~~~~~~~~~~~~~~~コストカウントここまで~~~~~~~~~~~~~~~~~~~~~
 
+//経過時間を保存するメソッド
+-(void)saveTime{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *dic = [defaults dictionaryForKey:app.projectName];
+    NSNumber *num = [NSNumber numberWithFloat:app.prjTime];
+    [dic setValue: num  forKey: @"経過時間"];
+    [defaults setObject:dic forKey: app.projectName];
+}
+
+
+
+//動作確認のためのメソッド
+-(void)kakunin{
+    NSLog(@"%ld",app.prjTime);
+}
+
+- (IBAction)backBtn:(UIButton *)sender {
+    //myTimerが動いている場合止める
+    if ([myTimer isValid]) {
+        [myTimer invalidate];
+        [costTimer invalidate];
+    }
+    
+    [self saveTime]; //経過時間を保存
+}
+
+//開始／停止ボタンをおした時の動作
+- (IBAction)startStopButton:(id)sender {
+    //myTimerが動いている場合止めて、終了ボタンを表示
+    if ([myTimer isValid]) {
+        [myTimer invalidate];
+        [costTimer invalidate];
+        self.finishBtn.hidden = NO;
+    }else{
+        //myTimerが動いてない場合動かす（timerメソッド）。終了ボタン隠す
+        [self countTimer];
+        [self costTimer];
+        self.finishBtn.hidden = YES;
+    }
+
+    [self saveTime]; //経過時間を保存
+    [mySound soundCoin]; //コインの音
+}
+
+//終了ボタン
 - (IBAction)finishBtn:(UIButton *)sender {
+    [self saveTime]; //経過時間を保存
     [mySound soundRegi]; //レジの音
 }
 @end

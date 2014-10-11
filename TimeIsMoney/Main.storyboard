@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="i6S-Lg-GgH">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -42,7 +41,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mFA-Fh-LJB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1787" y="-942"/>
+            <point key="canvasLocation" x="-1666" y="-948"/>
         </scene>
         <!--時給登録-->
         <scene sceneID="GMv-cA-HLa">
@@ -82,6 +81,7 @@
                                 </state>
                                 <connections>
                                     <action selector="okBtn:" destination="VkJ-d8-TsN" eventType="touchUpInside" id="lHO-6V-KfD"/>
+                                    <segue destination="i6S-Lg-GgH" kind="modal" id="ds5-gG-qsy"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -109,9 +109,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Xer-Pg-jkT">
-                                <rect key="frame" x="0.0" y="67" width="320" height="452"/>
+                                <rect key="frame" x="0.0" y="82" width="320" height="437"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfE-qd-3E0">
+                                <rect key="frame" x="16" y="28" width="30" height="30"/>
+                                <state key="normal" title="編集">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="hensyu:" destination="RCf-QB-14b" eventType="touchUpInside" id="Xhr-Bf-HPq"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ct9-JU-NlR">
                                 <rect key="frame" x="274" y="28" width="30" height="30"/>
                                 <state key="normal" title="新規">
@@ -120,12 +129,6 @@
                                 <connections>
                                     <segue destination="VkJ-d8-TsN" kind="modal" id="s4d-YY-sET"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfE-qd-3E0">
-                                <rect key="frame" x="16" y="28" width="30" height="30"/>
-                                <state key="normal" title="編集">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -160,7 +163,6 @@
                                 </state>
                                 <connections>
                                     <action selector="okBtn:" destination="VkJ-d8-TsN" eventType="touchUpInside" id="YZk-Dh-hqg"/>
-                                    <segue destination="i6S-Lg-GgH" kind="modal" id="GmS-1v-jOQ"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JQZ-FE-jFD">
@@ -229,10 +231,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="新規" id="Hzf-Xc-3IJ"/>
+                    <connections>
+                        <segue destination="i6S-Lg-GgH" kind="modal" identifier="NPtoTop" animates="NO" id="QdP-ix-bC3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aMu-8H-Ag1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1148" y="-1630"/>
+            <point key="canvasLocation" x="-1360" y="-1726"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="XHo-ND-Inc">
@@ -362,6 +367,16 @@
                                     <segue destination="zDi-Go-v1q" kind="modal" id="kaG-kq-gIb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3L-9S-RQG">
+                                <rect key="frame" x="42" y="20" width="30" height="30"/>
+                                <state key="normal" title="戻る">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backBtn:" destination="p0p-wN-6Ax" eventType="touchUpInside" id="JXz-hg-wMJ"/>
+                                    <segue destination="i6S-Lg-GgH" kind="modal" id="jwa-Fc-Loz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -459,7 +474,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="GmS-1v-jOQ"/>
         <segue reference="qHs-Ew-fdM"/>
+        <segue reference="jwa-Fc-Loz"/>
     </inferredMetricsTieBreakers>
 </document>

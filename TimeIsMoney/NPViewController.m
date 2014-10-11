@@ -29,52 +29,55 @@
     [self.view addGestureRecognizer:gestureRecognizer];
 }
 
-
 //ソフトウェアキーボードを消すためのメソッド
 - (void)closeSoftKeyboard {
     [self.view endEditing: YES];
 }
 
 
-//ここを改造する必要あり
+//入力内容を保存するためのメソッド
 -(void)save{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    //ここややこしい
-    int cnt =  0;
-    NSNumber *num = [defaults objectForKey:@"プロジェクトカウント"];
-    if (num ) {
-        cnt = num.intValue +1;
-    } else{
-        cnt = 1;
-    }
     
-    
-    NSString *str = [NSString stringWithFormat: @"プロジェクト_%03d", cnt];
-
     //プロジェクト名を保存
     [dic setObject: app.projectName  forKey: @"プロジェクト名"];
-    
+
     //クライアント名を保存（未記入の場合は「その他」）
-    [dic setObject: app.clientName  forKey: @"クライアント名"];
-    
+    if (app.clientName == nil) {
+        [dic setObject: @"その他"  forKey: @"クライアント名"];
+    }else{
+        [dic setObject: app.clientName  forKey: @"クライアント名"];
+    }
+
     //ジャンル名を保存（未記入の場合は「その他」）
-    [dic setObject: app.genreName  forKey: @"ジャンル名"];
+    if (app.genreName == nil) {
+        [dic setObject: @"その他"  forKey: @"ジャンル名"];
+    }else{
+        [dic setObject: app.genreName  forKey: @"ジャンル名"];
+    }
 
     //報酬を保存
-    num = [NSNumber numberWithFloat:app.housyu];
+    NSNumber *num = [NSNumber numberWithFloat:app.housyu];
     [dic setValue: num  forKey: @"報酬"];
     
-    //dicとして保存
-    [defaults setObject:dic forKey: str];
+    //経過時間を0として保存prjTime
+    [dic setValue: 0  forKey: @"経過時間"];
     
-    num = [[NSNumber alloc]initWithInt:cnt];
-    [defaults setObject:num forKey:@"プロジェクトカウント"];//プロジェクトの数？？
+    //進行中プロジェクトの配列の中身が空の場合初期化する
+    NSInteger dataCount;
+    dataCount = app.nowProject.count;
+    if (dataCount == 0) {
+        app.nowProject = [[NSMutableArray alloc] init];
+    }
+
+    //進行中プロジェクトの配列の最後に保存
+    [app.nowProject addObject:app.projectName];
     
-    //確認用？プロジェクトカウントの数をNSLogで出力
-    NSNumber *num2 = [defaults objectForKey:@"プロジェクトカウント"];
-    NSLog(@"カウント：%d",num2.intValue);
+    //userdefaultsでdicと配列を保存
+    [defaults setObject:dic forKey: app.projectName];
+    [defaults setObject:app.nowProject forKey:@"進行中"];
 }
 
 
@@ -84,13 +87,13 @@
     app.projectName = text;
 }
 
-//クライアント名
+//クライアント名を入力した時の動作
 - (IBAction)clientLabel:(UITextField *)sender {
     NSString *text = sender.text;
     app.clientName = text;
 }
 
-//ジャンル
+//ジャンル名を入力した時の動作
 - (IBAction)genreLabel:(UITextField *)sender {
     NSString *text = sender.text;
     app.genreName = text;
@@ -104,7 +107,43 @@
 
 //OKボタン
 - (IBAction)okBtn:(UIButton *)sender {
-    [mySound soundCoin]; //音を鳴らす
-    [self save]; //変数を保存
+    //同じプロジェクト名があるかどうか検索
+    BOOL flg = [app.nowProject containsObject:app.projectName];
+    
+    //プロジェクト名未記入の場合警告が出る
+    if(app.projectName == nil){
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"エラー"
+                              message:@"\nプロジェクト名を登録してください。"
+                              delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+
+    //同じプロジェクト名があった場合警告が出る
+    }else if (flg == YES) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"エラー"
+                              message:@"\n同じ名前のプロジェクトが存在します。\nプロジェクト名を変更してください。"
+                              delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        
+    //報酬未記入の場合警告が出る
+    }else if(app.housyu == 0){
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"エラー"
+                              message:@"\n報酬額を登録してください。"
+                              delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }else{
+        [self save]; //変数を保存
+        [mySound soundCoin]; //音を鳴らす
+        [self performSegueWithIdentifier:@"NPtoTop" sender:self]; //NPtoTop Segueを実行
+    }
 }
 @end
