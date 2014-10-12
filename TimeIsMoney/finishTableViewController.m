@@ -1,34 +1,28 @@
 //
-//  topViewController.m
+//  finishTableViewController.m
 //  TimeIsMoney
 //
-//  Created by ビザンコムマック　13 on 2014/10/08.
+//  Created by ビザンコムマック　13 on 2014/10/12.
 //  Copyright (c) 2014年 mycompany. All rights reserved.
 //
 
-#import "topViewController.h"
-#import "CDViewController.h"
+#import "finishTableViewController.h"
+#import "AppDelegate.h"
 
+@interface finishTableViewController ()
 
-@interface topViewController ()
 @end
 
-
-@implementation topViewController{
+@implementation finishTableViewController{
     AppDelegate *app; //変数管理
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
-
-    [app sinkouSet]; //配列の準備
-    [app finishSet]; //配列の準備
-
+    
     //プロジェクトの変数を初期化する
     app.housyu = 0; //報酬
     app.projectName = nil; //プロジェクト名
@@ -37,22 +31,20 @@
     app.prjTime = 0; //経過時間
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
 /*
 #pragma mark - Navigation
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
 */
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1; //セルの数を指定
@@ -61,10 +53,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger dataCount;
-    dataCount = app.nowProject.count;
+    dataCount = app.finishProject.count;
     return dataCount; //配列の中身の数を数えてローの数を指定する
 }
-
 
 //ここのメソッド何やってるかぜんぜんわからない
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,10 +68,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = app.nowProject[indexPath.row];
+    cell.textLabel.text = app.finishProject[indexPath.row];
     return cell;
 }
-
 
 //セルが選択された時
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -101,7 +91,7 @@
         NSInteger row = indexPath.row; //何番目が押されたかを判別してるっぽい
         
         //app.nowProjectから配列の◯番目の文字列を取り出して代入
-        app.projectName = [app.nowProject objectAtIndex:row];
+        app.projectName = [app.finishProject objectAtIndex:row];
         
         //取り出した文字列で辞書を呼び出す
         NSDictionary *dic = [defaults dictionaryForKey:app.projectName];
@@ -115,14 +105,8 @@
         app.prjTime = [data integerValue];
         
         [tableView deselectRowAtIndexPath:indexPath animated:YES]; // 選択状態の解除
-        [self performSegueWithIdentifier:@"topToCD" sender:self]; //opToCD Segueを実行
+        [self performSegueWithIdentifier:@"finishToResult" sender:self]; //Segueを実行
     }
 }
 
-//暫定利用
-- (IBAction)hensyu:(UIButton *)sender {
-    //NSUserdefaultの中身を全消去するメソッド
-    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
-}
 @end

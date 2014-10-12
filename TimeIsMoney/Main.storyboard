@@ -8,7 +8,7 @@
         <!--終了-->
         <scene sceneID="W60-AS-nPg">
             <objects>
-                <viewController id="uN9-r8-35F" sceneMemberID="viewController">
+                <viewController id="uN9-r8-35F" customClass="finishTableViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xjv-nC-QAX"/>
                         <viewControllerLayoutGuide type="bottom" id="oqY-mG-mvB"/>
@@ -16,13 +16,104 @@
                     <view key="view" contentMode="scaleToFill" id="nqc-Ty-dsK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="c3K-Cb-4x2">
+                                <rect key="frame" x="0.0" y="82" width="320" height="437"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXf-YY-qVH">
+                                <rect key="frame" x="16" y="28" width="30" height="30"/>
+                                <state key="normal" title="編集">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="hensyu:" destination="RCf-QB-14b" eventType="touchUpInside" id="gwZ-8r-0Ai"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="終了" id="xbc-LI-BFN"/>
+                    <connections>
+                        <outlet property="tableView" destination="c3K-Cb-4x2" id="qvZ-hq-XTf"/>
+                        <segue destination="49m-P8-eY1" kind="modal" identifier="finishToResult" id="3gc-tR-UFc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n1d-a1-39l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-978" y="-229"/>
+        </scene>
+        <!--Finish Result View Controller-->
+        <scene sceneID="qgP-45-Q7L">
+            <objects>
+                <viewController id="49m-P8-eY1" customClass="finishResultViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cz0-tP-TOR"/>
+                        <viewControllerLayoutGuide type="bottom" id="8nP-BM-0Tk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aAf-Rw-QdO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fnback01" translatesAutoresizingMaskIntoConstraints="NO" id="Pgl-vR-vW9">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="プロジェクト名が入る" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5og-Na-YuH">
+                                <rect key="frame" x="39" y="123" width="241" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulL-Rw-qQx">
+                                <rect key="frame" x="3" y="175" width="280" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRr-lJ-FSP">
+                                <rect key="frame" x="39" y="303" width="223" height="58"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5u-qn-Rob">
+                                <rect key="frame" x="39" y="401" width="223" height="58"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6z-vl-TTU">
+                                <rect key="frame" x="39" y="485" width="244" height="50"/>
+                                <state key="normal" backgroundImage="btnOtsu">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="otuBtn:" destination="zDi-Go-v1q" eventType="touchUpInside" id="adf-GR-IIb"/>
+                                    <action selector="restartBtn:" destination="49m-P8-eY1" eventType="touchUpInside" id="PgA-6j-4QH"/>
+                                    <action selector="startStopButton:" destination="p0p-wN-6Ax" eventType="touchUpInside" id="igO-I3-EQl"/>
+                                    <segue destination="i6S-Lg-GgH" kind="modal" id="a4F-jm-G7n"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qj-21-ojX">
+                                <rect key="frame" x="16" y="47" width="30" height="30"/>
+                                <state key="normal" title="戻る">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="i6S-Lg-GgH" kind="modal" id="4uY-T5-mTU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="backImage" destination="Pgl-vR-vW9" id="NnH-MP-7d2"/>
+                        <outlet property="otuBtn" destination="q6z-vl-TTU" id="gAB-3u-Gxf"/>
+                        <outlet property="pjNameLabel" destination="5og-Na-YuH" id="jzj-Dd-Jml"/>
+                        <outlet property="resultCostLabel" destination="wRr-lJ-FSP" id="IwQ-06-FII"/>
+                        <outlet property="resultJikyuLabel" destination="g5u-qn-Rob" id="FKj-jC-d8P"/>
+                        <outlet property="resultTimeLabel" destination="ulL-Rw-qQx" id="Zut-bR-VWL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JP7-wo-Oht" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-639" y="-229"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="oov-j7-Cdb">
@@ -486,7 +577,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="a4F-jm-G7n"/>
         <segue reference="qHs-Ew-fdM"/>
-        <segue reference="ScF-ip-BHT"/>
     </inferredMetricsTieBreakers>
 </document>

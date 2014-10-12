@@ -1,23 +1,23 @@
 //
-//  FNViewController.m
+//  finishResultViewController.m
 //  TimeIsMoney
 //
-//  Created by ビザンコムマック　13 on 2014/09/19.
+//  Created by ビザンコムマック　13 on 2014/10/12.
 //  Copyright (c) 2014年 mycompany. All rights reserved.
 //
 
-#import "FNViewController.h"
+#import "finishResultViewController.h"
 
-@interface FNViewController ()
+@interface finishResultViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
 @end
 
-@implementation FNViewController
+@implementation finishResultViewController
 {
     Sound *mySound; //音源クラスのインスタンス
     AppDelegate *app; //変数管理
     
-//このクラスでしか使われない変数
+    //このクラスでしか使われない変数
     NSInteger resultJikyu;
     NSInteger hours;
     NSInteger minutes;
@@ -26,18 +26,7 @@
     float ichienByousu;
 }
 
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     mySound = [[Sound alloc]init]; //音源クラスのインスタンス初期化
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
@@ -60,8 +49,8 @@
     minutes = (app.prjTime%3600)/60;
     seconds = (app.prjTime%3600)%60;
     self.resultTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",hours,minutes,seconds];
-
-
+    
+    
     //resultCostLabelに報酬額から総コストを引いた金額を記入
     ichienByousu = 3600/app.jikyu;//時給から１円あたりの秒数を計算
     flt = app.prjTime/ichienByousu;
@@ -79,42 +68,41 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 /*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark - Navigation
 
-- (IBAction)otuBtn:(UIButton *)sender {
-    //nowProjectから削除してUserDefaltsで保存
-    [app.nowProject removeObject:app.projectName];
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+//再開ボタンをおした時の挙動
+- (IBAction)restartBtn:(UIButton *)sender {
+    //finishProjectから削除してUserDefaltsで保存
+    [app.finishProject removeObject:app.projectName];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:app.nowProject forKey:@"進行中"];
-
-    //finishProjectに挿入してUserDefaltsで保存
-    //終了済プロジェクトの配列の中身が空の場合初期化する
-    NSInteger dataCount;
-    dataCount = app.finishProject.count;
-    if (dataCount == 0) {
-        app.finishProject = [[NSMutableArray alloc] init];
-    }
-    //終了済プロジェクトの配列の最後に保存
-    [app.finishProject addObject:app.projectName];
-    //userdefaultsで配列を保存
     [defaults setObject:app.finishProject forKey:@"終了済"];
+    
+    //nowProjectに挿入してUserDefaltsで保存
+    //進行中プロジェクトの配列の中身が空の場合初期化する
+    NSInteger dataCount;
+    dataCount = app.nowProject.count;
+    if (dataCount == 0) {
+        app.nowProject = [[NSMutableArray alloc] init];
+    }
+    //進行中プロジェクトの配列の最後に保存
+    [app.nowProject addObject:app.projectName];
+    //userdefaultsで配列を保存
+    [defaults setObject:app.nowProject forKey:@"進行中"];
     
     [mySound soundCoin]; //コインの音
 }
-
 @end

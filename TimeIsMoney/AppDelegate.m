@@ -54,4 +54,11 @@
     NSArray *array = [defaults arrayForKey:@"進行中"];
     self.nowProject = [array mutableCopy];
 }
+
+-(void)finishSet{
+    //userdefaulから終了済を呼び出してfinishProjectに代入する
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *array = [defaults arrayForKey:@"終了済"];
+    self.finishProject = [array mutableCopy];
+}
 @end

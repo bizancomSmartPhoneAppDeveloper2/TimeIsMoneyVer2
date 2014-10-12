@@ -17,6 +17,7 @@
 
 //進行中プロジェクトを管理する配列
 @property NSMutableArray *nowProject;
+@property NSMutableArray *finishProject;
 
 //プロジェクト作成時の変数
 @property float housyu; //報酬
@@ -27,12 +28,9 @@
 //プロジェクトの経過時間を数える変数
 @property NSInteger prjTime;
 
-////プロジェクトの状態を判定する変数…新規=0、進行中=1、終了=2
-//@property NSInteger state;
 
-
-//個別プロジェクトの中身の変数
 
 -(void)sinkouSet;
+-(void)finishSet;
 
 @end

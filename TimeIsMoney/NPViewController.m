@@ -109,6 +109,7 @@
 - (IBAction)okBtn:(UIButton *)sender {
     //同じプロジェクト名があるかどうか検索
     BOOL flg = [app.nowProject containsObject:app.projectName];
+    BOOL flg2 = [app.finishProject containsObject:app.projectName];
     
     //プロジェクト名未記入の場合警告が出る
     if(app.projectName == nil){
@@ -121,8 +122,18 @@
                               otherButtonTitles:nil];
         [alert show];
 
-    //同じプロジェクト名があった場合警告が出る
+    //同じプロジェクト名があった場合警告が出る（進行中）
     }else if (flg == YES) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"登録できません"
+                              message:@"\n同じ名前のプロジェクトが存在します。\nプロジェクト名を変更してください。"
+                              delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        
+        //同じプロジェクト名があった場合警告が出る（終了済）
+    }else if (flg2 == YES) {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"登録できません"
                               message:@"\n同じ名前のプロジェクトが存在します。\nプロジェクト名を変更してください。"

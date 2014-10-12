@@ -34,12 +34,17 @@
     mySound = [[Sound alloc]init]; //音源クラスのインスタンス初期化
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
     
+    //チート用!!経過時間を操作。
+//    NSInteger i = 6; //時間
+//    app.prjTime = i*3600;
+//    i = 59; //分
+//    app.prjTime = app.prjTime + (i*60);
+//    i = 22; //秒
+//    app.prjTime = app.prjTime + i;
+    
+    
     //プロジェク名をラベルに表示
     self.pjNameLabel.text = [NSString stringWithFormat:@"%@",app.projectName];
-    
-//    //目標時給と報酬から目標時間を割り出す
-//    app.mokuhyouJikan = app.housyu/app.jikyu*60;
-//    NSInteger num = app.mokuhyouJikan; //目標時間から小数点を切り捨てるためにint型の変数に代入
     
     //目標時給と報酬から目標時間を割り出す
     float flt = app.housyu/app.jikyu*60*60;
