@@ -41,7 +41,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n1d-a1-39l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-978" y="-229"/>
+            <point key="canvasLocation" x="-1459" y="183"/>
         </scene>
         <!--Finish Result View Controller-->
         <scene sceneID="qgP-45-Q7L">
@@ -113,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JP7-wo-Oht" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-639" y="-229"/>
+            <point key="canvasLocation" x="-694" y="183"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="oov-j7-Cdb">
@@ -133,7 +133,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mFA-Fh-LJB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1666" y="-948"/>
+            <point key="canvasLocation" x="-2098" y="-976"/>
         </scene>
         <!--時給登録-->
         <scene sceneID="GMv-cA-HLa">
@@ -156,16 +156,6 @@
                                     <action selector="jikyuLabel:" destination="rEz-bG-NSN" eventType="editingDidEnd" id="eFw-bS-joK"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96L-cV-los">
-                                <rect key="frame" x="193" y="105" width="89" height="50"/>
-                                <state key="normal" backgroundImage="btnJikyu">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="gekkyuBtn:" destination="VkJ-d8-TsN" eventType="touchUpInside" id="cwG-Yx-W5e"/>
-                                    <segue destination="2bd-SU-J0E" kind="modal" id="kax-kJ-Off"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KC4-q9-48d">
                                 <rect key="frame" x="38" y="448" width="244" height="50"/>
                                 <state key="normal" backgroundImage="btnOk">
@@ -176,6 +166,57 @@
                                     <segue destination="i6S-Lg-GgH" kind="modal" id="ds5-gG-qsy"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xcU-GD-xh1">
+                                <rect key="frame" x="38" y="235" width="121" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="monthlySalaryText:" destination="rEz-bG-NSN" eventType="editingDidEnd" id="DAi-lu-D3B"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ddm-VG-DHS">
+                                <rect key="frame" x="38" y="306" width="77" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="workTime:" destination="rEz-bG-NSN" eventType="editingDidEnd" id="Gqg-Pa-EN3"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IAi-mG-dFp">
+                                <rect key="frame" x="38" y="377" width="121" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="weekHoliday:" destination="rEz-bG-NSN" eventType="editingDidEnd" id="795-R1-V5A"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CRb-Ud-AdG">
+                                <rect key="frame" x="193" y="357" width="89" height="50"/>
+                                <state key="normal" backgroundImage="btnGekkyu">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="keisanButton" destination="rEz-bG-NSN" eventType="touchUpInside" id="1Uf-rp-ArY"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="月給" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7o-gf-dgl">
+                                <rect key="frame" x="38" y="206" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="平均労働時間" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJy-eE-ux9">
+                                <rect key="frame" x="38" y="277" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="週休" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUC-yS-YnQ">
+                                <rect key="frame" x="38" y="348" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -186,7 +227,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="00t-gY-fI1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1697" y="-127"/>
+            <point key="canvasLocation" x="-2285" y="-59"/>
         </scene>
         <!--進行中-->
         <scene sceneID="bj0-Mm-mHn">
@@ -234,7 +275,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYU-jf-4jK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1148" y="-924"/>
+            <point key="canvasLocation" x="-1204" y="-1536"/>
         </scene>
         <!--新規-->
         <scene sceneID="U7g-Rm-pHW">
@@ -339,82 +380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aMu-8H-Ag1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1421" y="-1705"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="XHo-ND-Inc">
-            <objects>
-                <viewController id="2bd-SU-J0E" customClass="MSViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6fE-ca-t58"/>
-                        <viewControllerLayoutGuide type="bottom" id="P70-1A-UwQ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SRZ-dU-ur8">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="msback" translatesAutoresizingMaskIntoConstraints="NO" id="A4K-PK-fOr">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gfp-5q-8lC">
-                                <rect key="frame" x="39" y="168" width="121" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <action selector="monthlySalaryText:" destination="2bd-SU-J0E" eventType="editingDidEnd" id="G25-mV-IEc"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="olx-Fy-D1N">
-                                <rect key="frame" x="39" y="239" width="77" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <action selector="workTime:" destination="2bd-SU-J0E" eventType="editingDidEnd" id="mNP-a0-rwV"/>
-                                </connections>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qz4-pi-LW5">
-                                <rect key="frame" x="6" y="397" width="254" height="58"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kQB-qX-Kne">
-                                <rect key="frame" x="39" y="310" width="121" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <action selector="weekHoliday:" destination="2bd-SU-J0E" eventType="editingDidEnd" id="KY9-K9-f2y"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DeI-HZ-JMk">
-                                <rect key="frame" x="39" y="481" width="244" height="50"/>
-                                <state key="normal" backgroundImage="btnOk">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="okBtn:" destination="2bd-SU-J0E" eventType="touchUpInside" id="3dy-sY-A5k"/>
-                                    <segue destination="rEz-bG-NSN" kind="modal" id="OHP-CE-63c"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49V-iM-UsD">
-                                <rect key="frame" x="194" y="290" width="89" height="50"/>
-                                <state key="normal" backgroundImage="btnGekkyu">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="keisanButton" destination="2bd-SU-J0E" eventType="touchUpInside" id="a9Q-6L-GaM"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="jikyuLabel" destination="Qz4-pi-LW5" id="jRy-Yp-rUH"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fxg-yI-UBz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1521" y="845"/>
+            <point key="canvasLocation" x="-1749" y="-1809"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="GSx-Jg-rFE">
@@ -494,7 +460,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ic6-Fn-hrv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-759" y="-942"/>
+            <point key="canvasLocation" x="-1204" y="-860"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="QNX-iM-qcF">
@@ -556,20 +522,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p6Q-vM-v8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-357" y="-942"/>
+            <point key="canvasLocation" x="-806" y="-860"/>
         </scene>
     </scenes>
     <resources>
         <image name="btnFinish" width="488" height="100"/>
         <image name="btnGekkyu" width="178" height="100"/>
-        <image name="btnJikyu" width="178" height="100"/>
         <image name="btnOk" width="488" height="100"/>
         <image name="btnOtsu" width="488" height="100"/>
         <image name="btnStart" width="488" height="100"/>
         <image name="btnStartRed" width="488" height="100"/>
         <image name="cdback01" width="640" height="1136"/>
         <image name="fnback01" width="640" height="1136"/>
-        <image name="msback" width="640" height="1136"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -577,7 +541,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="a4F-jm-G7n"/>
-        <segue reference="qHs-Ew-fdM"/>
+        <segue reference="5Md-wl-6Uj"/>
     </inferredMetricsTieBreakers>
 </document>

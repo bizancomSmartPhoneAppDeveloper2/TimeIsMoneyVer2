@@ -18,6 +18,14 @@
 {
     Sound *mySound; //音源のインスタンス
     AppDelegate *app; //変数管理
+    
+    //このクラスでしか使わない変数
+    NSInteger gekkyu;
+    NSInteger workTime;
+    NSInteger weekHoliday;
+    //計算に使う変数
+    NSInteger workDays;
+    NSInteger totalWorkTime;
 }
 
 
@@ -39,6 +47,11 @@
         NSNumber *num = [NSNumber numberWithFloat:app.jikyu]; //NSNumber型に変換
         [self.jikyuhyouji setText: [NSString stringWithFormat:@"%@",num]];
     }
+    
+    //それぞれの変数に0を代入（計算ボタンを押すと落ちてしまうため）
+    gekkyu = 0;
+    workTime = 0;
+    weekHoliday = 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +63,7 @@
     [self.view endEditing: YES];
 }
 
+
 //時給を入力した時の動作 入力がすぐに反映されるのはなおした方がいいかも
 - (IBAction)jikyuLabel:(UITextField *)sender {
     NSString *text = sender.text;
@@ -59,6 +73,50 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSNumber *num = [NSNumber numberWithFloat:app.jikyu];
     [defaults setObject:num forKey:@"時給"];
+}
+
+
+//月給を入力した時の動作
+- (IBAction)monthlySalaryText:(UITextField *)sender {
+    NSString *text = sender.text;
+    gekkyu = text.integerValue;
+}
+
+//労働時間を入力した時の動作
+- (IBAction)workTime:(UITextField *)sender {
+    NSString *text = sender.text;
+    workTime = text.integerValue;
+}
+
+//週休を入力した時の動作
+- (IBAction)weekHoliday:(UITextField *)sender {
+    NSString *text = sender.text;
+    weekHoliday = text.integerValue;
+}
+
+
+//計算するボタンを押す
+- (IBAction)keisanButton {
+    //!!!ToDo!!! 多すぎる数字を入力した時にエラーが出るようにする。（ポップアップが理想）
+    //週休から月の勤務日数を割り出す
+    workDays = ((7-weekHoliday)*4)+2;
+    if (weekHoliday>3) {
+        workDays--;
+    }
+    
+    //勤務日数に労働時間をかけて一ヶ月の労働時間を割り出す
+    totalWorkTime = workDays*workTime;
+    //月給を総労働時間で割って時給を算出する
+    app.jikyu = gekkyu/totalWorkTime;
+    
+    //目標時給をラベルに表示する
+    NSNumber *num = [NSNumber numberWithFloat:app.jikyu]; //NSNumber型に変換
+    [self.jikyuhyouji setText: [NSString stringWithFormat:@"%@",num]];
+    
+    
+    [self closeSoftKeyboard];//ソフトウェアキーボードを閉じる
+    [mySound soundCoin]; //コインの音
+    
 }
 
 

@@ -27,7 +27,6 @@
 		F46DA24B19CB44E800AB1CEC /* CDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DA24A19CB44E800AB1CEC /* CDViewController.m */; };
 		F46DA24E19CB466800AB1CEC /* FNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DA24D19CB466800AB1CEC /* FNViewController.m */; };
 		F4A9AFB919E634C200F8E9FD /* jikyuSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A9AFB819E634C200F8E9FD /* jikyuSetViewController.m */; };
-		F4B8383219CB4A5300F11366 /* MSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B8383119CB4A5300F11366 /* MSViewController.m */; };
 		F4DBBB5419E4443A0064083C /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = F4DBBB5319E4443A0064083C /* Sound.m */; };
 		F4E9CF6C19CC02EE0049F233 /* coin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4E9CF6919CC02EE0049F233 /* coin.mp3 */; };
 		F4E9CF6D19CC02EE0049F233 /* register.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4E9CF6A19CC02EE0049F233 /* register.mp3 */; };
@@ -76,8 +75,6 @@
 		F46DA24D19CB466800AB1CEC /* FNViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNViewController.m; sourceTree = "<group>"; };
 		F4A9AFB719E634C200F8E9FD /* jikyuSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jikyuSetViewController.h; sourceTree = "<group>"; };
 		F4A9AFB819E634C200F8E9FD /* jikyuSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jikyuSetViewController.m; sourceTree = "<group>"; };
-		F4B8383019CB4A5300F11366 /* MSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSViewController.h; sourceTree = "<group>"; };
-		F4B8383119CB4A5300F11366 /* MSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSViewController.m; sourceTree = "<group>"; };
 		F4DBBB5219E4443A0064083C /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		F4DBBB5319E4443A0064083C /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
 		F4E9CF6919CC02EE0049F233 /* coin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coin.mp3; sourceTree = "<group>"; };
@@ -155,8 +152,6 @@
 				F4A9AFB819E634C200F8E9FD /* jikyuSetViewController.m */,
 				F46DA24319CB41AE00AB1CEC /* NPViewController.h */,
 				F46DA24419CB41AE00AB1CEC /* NPViewController.m */,
-				F4B8383019CB4A5300F11366 /* MSViewController.h */,
-				F4B8383119CB4A5300F11366 /* MSViewController.m */,
 				F46DA24919CB44E800AB1CEC /* CDViewController.h */,
 				F46DA24A19CB44E800AB1CEC /* CDViewController.m */,
 				F46DA24C19CB466800AB1CEC /* FNViewController.h */,
@@ -319,7 +314,6 @@
 				F46DA21F19CB403300AB1CEC /* AppDelegate.m in Sources */,
 				F46DA24519CB41AE00AB1CEC /* NPViewController.m in Sources */,
 				F46DA21B19CB403300AB1CEC /* main.m in Sources */,
-				F4B8383219CB4A5300F11366 /* MSViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
