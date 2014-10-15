@@ -21,9 +21,17 @@
 //時間コストを表示するラベル
 @property (weak, nonatomic) IBOutlet UILabel *TimeCostLabel;
 
+//小さなラベルたち
+@property (weak, nonatomic) IBOutlet UILabel *clientLabel;//クライアント名
+@property (weak, nonatomic) IBOutlet UILabel *genreLabel;//ジャンル名
+@property (weak, nonatomic) IBOutlet UILabel *housyuLabel;//報酬額
+@property (weak, nonatomic) IBOutlet UILabel *totalTimeLabel;//合計時間
+
+
 //ボタンの画像を途中で変更するためにはプロパティの宣言が必要
 @property (weak, nonatomic) IBOutlet UIButton *startStopButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishBtn;
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
 
 //NPから受け渡される変数のプロパティを宣言
 @property float jikyu;

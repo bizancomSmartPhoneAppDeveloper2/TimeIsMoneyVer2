@@ -16,6 +16,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *resultCostLabel;
 @property (weak, nonatomic) IBOutlet UILabel *resultJikyuLabel;
 
+//小さなラベルたち
+@property (weak, nonatomic) IBOutlet UILabel *clientLabel;//クライアント名
+@property (weak, nonatomic) IBOutlet UILabel *genreLabel;//ジャンル名
+@property (weak, nonatomic) IBOutlet UILabel *housyuLabel;//報酬額
+
 //ボタンの色を変えるためにプロパティを宣言
 @property (weak, nonatomic) IBOutlet UIButton *otuBtn;
 @end

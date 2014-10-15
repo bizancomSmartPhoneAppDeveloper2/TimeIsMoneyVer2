@@ -28,9 +28,12 @@
 //プロジェクトの経過時間を数える変数
 @property NSInteger prjTime;
 
+//終了タブから戻ってきたかどうかの判定
+@property NSInteger syuryo;
 
 
 -(void)sinkouSet;
 -(void)finishSet;
+-(void)jikyuSet;
 
 @end

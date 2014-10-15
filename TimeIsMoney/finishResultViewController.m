@@ -34,14 +34,21 @@
     //pjNameResultLabelにプロジェクト名を記入
     self.pjNameLabel.text = [NSString stringWithFormat:@"%@",app.projectName];
     
+    //クライアント名、ジャンル名、報酬額をラベルに表示
+    self.clientLabel.text = [NSString stringWithFormat:@"クライアント：%@",app.clientName];
+    self.genreLabel.text = [NSString stringWithFormat:@"ジャンル：%@",app.genreName];
+    NSNumber *num = [NSNumber numberWithFloat:app.housyu];
+    self.housyuLabel.text = [NSString stringWithFormat:@"報酬額：%@円",num];
+    
     //目標時給と報酬から目標時間を割り出す
     float flt = app.housyu/app.jikyu*60*60;
-    NSInteger num = flt; //目標時間から小数点を切り捨てるためにint型の変数に代入
+    NSInteger intNum = flt; //目標時間から小数点を切り捨てるためにint型の変数に代入
     
     //経過時間と目標時間を比較し、目標時間を過ぎていた場合背景を赤くする
-    if (app.prjTime > num) {
+    if (app.prjTime > intNum) {
         self.backImage.image = [UIImage imageNamed:@"fnback02"]; //背景画像を変更する
-        [self.otuBtn setImage:[UIImage imageNamed:@"btnOtsuRed"] forState:UIControlStateNormal];//ボタンも変更する
+        [self.otuBtn setImage:[UIImage imageNamed:@"btnResumeRed"] forState:UIControlStateNormal];//ボタンも変更する
+        [self.backBtn setImage:[UIImage imageNamed:@"btnBackWhite"] forState:UIControlStateNormal];
     }
     
     //resultTimeLabelにプロジェクト終了までにかかった時間の合計を記入
@@ -105,4 +112,10 @@
     
     [mySound soundCoin]; //コインの音
 }
+
+- (IBAction)backBtn:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"finishResultToTop" sender:self]; //Segueを実行
+    app.syuryo = 1;
+}
+
 @end

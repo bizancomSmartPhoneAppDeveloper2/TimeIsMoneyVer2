@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h" //変数管理
 
-@interface topViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface topViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

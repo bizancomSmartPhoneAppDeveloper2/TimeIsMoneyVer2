@@ -23,18 +23,50 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tabBarController.delegate = self;
+    
+//    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[3];
     
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
 
     [app sinkouSet]; //配列の準備
     [app finishSet]; //配列の準備
-
+    
     //プロジェクトの変数を初期化する
     app.housyu = 0; //報酬
     app.projectName = nil; //プロジェクト名
     app.genreName = nil; //ジャンル名
     app.clientName = nil; //クライアント名
     app.prjTime = 0; //経過時間
+    
+    [app jikyuSet]; //時給をセット
+    //時給が空の場合時給タブを開く
+    if(app.jikyu == 0){
+        UIViewController *vc = self.tabBarController.childViewControllers[3];
+        [UIView transitionFromView:self.view
+                            toView:vc.view
+                          duration:1.0
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        completion:
+         ^(BOOL finished) {
+             self.tabBarController.selectedViewController = vc;
+         }];
+        
+    }
+    
+    //終了結果表示から帰ってきた場合終了タブを開く
+    if(app.syuryo == 1){
+        UIViewController *vc = self.tabBarController.childViewControllers[1];
+        [UIView transitionFromView:self.view
+                            toView:vc.view
+                          duration:1.0
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        completion:
+         ^(BOOL finished) {
+             self.tabBarController.selectedViewController = vc;
+             app.syuryo = 0;
+         }];
+    }
 }
 
 
@@ -97,7 +129,7 @@
     }else{
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
-        if ( indexPath.section != 0) return; //これがよくわからない
+        if (indexPath.section != 0) return; //これがよくわからない
         NSInteger row = indexPath.row; //何番目が押されたかを判別してるっぽい
         
         //app.nowProjectから配列の◯番目の文字列を取り出して代入
@@ -113,6 +145,14 @@
         //経過時間を代入
         data = [dic objectForKey:@"経過時間"];
         app.prjTime = [data integerValue];
+        
+        //クライアント名を代入
+        data = [dic objectForKey:@"クライアント名"];
+        app.clientName = [NSString stringWithFormat:@"%@", data];
+        
+        //ジャンルを代入
+        data = [dic objectForKey:@"ジャンル名"];
+        app.genreName = [NSString stringWithFormat:@"%@", data];
         
         [tableView deselectRowAtIndexPath:indexPath animated:YES]; // 選択状態の解除
         [self performSegueWithIdentifier:@"topToCD" sender:self]; //opToCD Segueを実行

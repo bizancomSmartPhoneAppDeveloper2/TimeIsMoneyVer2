@@ -68,11 +68,13 @@
 - (IBAction)jikyuLabel:(UITextField *)sender {
     NSString *text = sender.text;
     app.jikyu = text.integerValue;
+//    NSLog(@"イチ 時給を%fに変更",app.jikyu);
     
-    //時給をNSUserDefaultで保存
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSNumber *num = [NSNumber numberWithFloat:app.jikyu];
-    [defaults setObject:num forKey:@"時給"];
+//    //時給をNSUserDefaultで保存
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSNumber *num = [NSNumber numberWithFloat:app.jikyu];
+//    [defaults setObject:num forKey:@"時給"];
+//    NSLog(@"ニ 時給を%fに変更",app.jikyu);
 }
 
 
@@ -113,11 +115,15 @@
     NSNumber *num = [NSNumber numberWithFloat:app.jikyu]; //NSNumber型に変換
     [self.jikyuhyouji setText: [NSString stringWithFormat:@"%@",num]];
     
-    
     [self closeSoftKeyboard];//ソフトウェアキーボードを閉じる
     [mySound soundCoin]; //コインの音
-    
 }
 
+- (IBAction)okBtn:(UIButton *)sender {
+    //時給をNSUserDefaultで保存
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *num = [NSNumber numberWithFloat:app.jikyu];
+    [defaults setObject:num forKey:@"時給"];
+}
 
 @end

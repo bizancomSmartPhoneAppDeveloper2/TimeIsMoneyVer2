@@ -104,6 +104,14 @@
         data = [dic objectForKey:@"経過時間"];
         app.prjTime = [data integerValue];
         
+        //クライアント名を代入
+        data = [dic objectForKey:@"クライアント名"];
+        app.clientName = [NSString stringWithFormat:@"%@", data];
+        
+        //ジャンルを代入
+        data = [dic objectForKey:@"ジャンル名"];
+        app.genreName = [NSString stringWithFormat:@"%@", data];
+        
         [tableView deselectRowAtIndexPath:indexPath animated:YES]; // 選択状態の解除
         [self performSegueWithIdentifier:@"finishToResult" sender:self]; //Segueを実行
     }

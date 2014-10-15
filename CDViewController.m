@@ -35,41 +35,52 @@
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
     
     //チート用!!経過時間を操作。
-//    NSInteger i = 6; //時間
+//    NSInteger i = 4; //時間
 //    app.prjTime = i*3600;
 //    i = 59; //分
 //    app.prjTime = app.prjTime + (i*60);
-//    i = 22; //秒
+//    i = 45; //秒
 //    app.prjTime = app.prjTime + i;
     
     
-    //プロジェク名をラベルに表示
+    //プロジェクト名をラベルに表示
     self.pjNameLabel.text = [NSString stringWithFormat:@"%@",app.projectName];
+    
+    //クライアント名、ジャンル名、報酬額をラベルに表示
+    self.clientLabel.text = [NSString stringWithFormat:@"クライアント：%@",app.clientName];
+    self.genreLabel.text = [NSString stringWithFormat:@"ジャンル：%@",app.genreName];
+    NSNumber *num = [NSNumber numberWithFloat:app.housyu];
+    self.housyuLabel.text = [NSString stringWithFormat:@"報酬額：%@円",num];
+    
+    //経過時間をラベルに表示
+    [self writeTotalTimeLabel];
+
     
     //目標時給と報酬から目標時間を割り出す
     float flt = app.housyu/app.jikyu*60*60;
-    NSInteger num = flt; //目標時間から小数点を切り捨てるためにint型の変数に代入
+    NSInteger intNum = flt; //目標時間から小数点を切り捨てるためにint型の変数に代入
     
     //目標時間から経過時間を引いて残り時間を割り出す
-    num = num - app.prjTime;
+    intNum = intNum - app.prjTime;
     
-    if (num >= 0) {
+    if (intNum >= 0) {
         //もし残り時間が0以上の場合、時、分、秒に数字を代入。ラベルにそれを表示
-        hours = num/3600;
-        minutes = (num%3600)/60;
-        seconds = (num%3600)%60;
+        hours = intNum/3600;
+        minutes = (intNum%3600)/60;
+        seconds = (intNum%3600)%60;
         [self writePjTimeLabel];
     }else{
         //isOverをYESにして、時、分、秒に数字を代入。ラベルにそれを表示
         isOver = YES;
-        num = -1*num;
-        hours = num/3600;
-        minutes = (num%3600)/60;
-        seconds = (num%3600)%60;
+        intNum = -1*intNum;
+        hours = intNum/3600;
+        minutes = (intNum%3600)/60;
+        seconds = (intNum%3600)%60;
         [self writePjTimeLabel];
         self.backImage.image = [UIImage imageNamed:@"cdback02"]; //背景画像を変更する。ボタンも変更。
         [self.startStopButton setImage:[UIImage imageNamed:@"btnStartRed"] forState:UIControlStateNormal];
         [self.finishBtn setImage:[UIImage imageNamed:@"btnFinishRed"] forState:UIControlStateNormal];
+        [self.backBtn setImage:[UIImage imageNamed:@"btnBackWhite"] forState:UIControlStateNormal];
     }
     
     
@@ -83,9 +94,9 @@
     self.TimeCostLabel.text = [NSString stringWithFormat:@"%ld",cost];
     
     //経過時間が0の場合終了ボタンを隠す
-    if (app.prjTime == 0) {
-        self.finishBtn.hidden = YES;
-    }
+//    if (app.prjTime == 0) {
+//        self.finishBtn.hidden = YES;
+//    }
 }
 
 //~~~~~~~~~~~~~~~~~~~~~ここからタイマーカウント~~~~~~~~~~~~~~~~~~~~~
@@ -129,17 +140,27 @@
             //ついでにボタンを変える
             [self.startStopButton setImage:[UIImage imageNamed:@"btnStartRed"] forState:UIControlStateNormal];
             [self.finishBtn setImage:[UIImage imageNamed:@"btnFinishRed"] forState:UIControlStateNormal];
+            [self.backBtn setImage:[UIImage imageNamed:@"btnBackWhite"] forState:UIControlStateNormal];
         }
     }
     else{
         //カウントダウンが終わった場合マイナスカウントメソッドを実行
         [self akajiCount];
     }
+    [self writeTotalTimeLabel];//経過時間を計算して表示する
 }
 
 //countDownメソッドで使うprojectTimeLabelに残り時間を表示するためのメソッド
 -(void)writePjTimeLabel{
     self.pjTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",hours,minutes,seconds];
+}
+
+//経過時間を計算して表示するメソッド（countDownとViewDidLoadに使った）
+-(void)writeTotalTimeLabel{
+    NSInteger totalHours = app.prjTime/3600;
+    NSInteger totalMinutes = (app.prjTime%3600)/60;
+    NSInteger totalSeconds = (app.prjTime%3600)%60;
+    self.totalTimeLabel.text = [NSString stringWithFormat:@"経過時間：%02ld:%02ld:%02ld",totalHours,totalMinutes,totalSeconds];
 }
 
 //赤字に陥った後のカウントアップメソッド
