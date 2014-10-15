@@ -162,7 +162,7 @@
 //暫定利用
 - (IBAction)hensyu:(UIButton *)sender {
     //NSUserdefaultの中身を全消去するメソッド
-    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+//    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+//    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
 }
 @end

@@ -39,7 +39,7 @@
 //    app.prjTime = i*3600;
 //    i = 59; //分
 //    app.prjTime = app.prjTime + (i*60);
-//    i = 45; //秒
+//    i = 50; //秒
 //    app.prjTime = app.prjTime + i;
     
     
