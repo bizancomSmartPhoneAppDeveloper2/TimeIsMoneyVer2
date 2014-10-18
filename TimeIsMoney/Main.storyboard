@@ -343,7 +343,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="npBack" translatesAutoresizingMaskIntoConstraints="NO" id="7k9-lk-azx">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="npback" translatesAutoresizingMaskIntoConstraints="NO" id="7k9-lk-azx">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kxk-ss-F4u">
@@ -415,9 +415,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="npBack2" translatesAutoresizingMaskIntoConstraints="NO" id="sc1-DA-IKj">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -641,8 +638,7 @@
         <image name="finishBack" width="320" height="568"/>
         <image name="fnback01" width="320" height="568"/>
         <image name="jikyuBack" width="640" height="1136"/>
-        <image name="npBack" width="320" height="568"/>
-        <image name="npBack2" width="320" height="568"/>
+        <image name="npback" width="320" height="568"/>
         <image name="tab1" width="30" height="30"/>
         <image name="tab2" width="30" height="30"/>
         <image name="tab3" width="30" height="30"/>
@@ -655,7 +651,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ds5-gG-qsy"/>
+        <segue reference="uTl-ET-T77"/>
         <segue reference="lYV-gr-fN4"/>
     </inferredMetricsTieBreakers>
 </document>
