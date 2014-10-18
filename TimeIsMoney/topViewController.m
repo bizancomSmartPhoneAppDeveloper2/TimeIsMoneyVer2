@@ -159,7 +159,7 @@
     }
 }
 
-//暫定利用
+//今のところ機能してないのでデータ消去に利用
 - (IBAction)hensyu:(UIButton *)sender {
     //NSUserdefaultの中身を全消去するメソッド
 //    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
